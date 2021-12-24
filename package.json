@@ -1,0 +1,12 @@
+{
+  "name": "vanilla-ui",
+  "version": "1.0.0",
+  "description": "web components ui",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^2.61.1",
+    "typescript": "^4.5.4"
+  }
+}
