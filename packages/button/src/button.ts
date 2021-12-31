@@ -1,5 +1,6 @@
-import { VButtonType } from './button.type';
-
+import { VButtonType } from './interface';
+import { buttonDefaultConfig } from './default-config'
+import { renderButtonTemplate } from './template'
 
 function setStyle() {
     return `
@@ -36,14 +37,15 @@ function updateAttribute(elem: HTMLElement, name: string, value: string) {
 }
 
 export class VButton extends HTMLElement {
+    private config = buttonDefaultConfig
     static get observedAttributes() {
         return ['type', 'attr-type']
     }
     constructor() {
         super()
-        this.setShadowRoot()
+        this.render()
     }
-    setShadowRoot() {
+    render() {
         const shadowRoot = this.attachShadow({ mode: 'open' })
         const htmlParam: VButtonType = {
             attrType: 'button'
