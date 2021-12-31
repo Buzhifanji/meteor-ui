@@ -20,9 +20,9 @@ function setStyle() {
     `
 }
 
-function setHtml({ type }: VButtonType) {
+function setHtml({ attrType }: VButtonType) {
     return `
-    <button class="v-button" type="${type}">
+    <button class="v-button" type="${attrType}">
         <slot></slot>
     </button>
     `
@@ -46,7 +46,7 @@ class VButton extends HTMLElement {
     setShadowRoot() {
         const shadowRoot = this.attachShadow({ mode: 'open' })
         const htmlParam: VButtonType = {
-            type: 'button'
+            attrType: 'button'
         }
         shadowRoot.innerHTML = setStyle() + setHtml(htmlParam)
     }

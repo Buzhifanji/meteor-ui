@@ -1,17 +1,17 @@
 function setStyle() {
     return `
     <style>
-        :host > .my-image {
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-            width: 100px;
-            height: 100px;
-        }
-        :host .my-image_inner {
-            vertical-align: top;
+        :host .v-card {
+            font-size: 14px;
+            border: 1px solid rgb(239, 239, 245);
+            display: flex;
+            flex-direction: column;
+            border-radius: 3px;
             width: 100%;
-            height: 100%;
+        }
+        :host .v-card-header {
+            display: flex;
+            padding: 19px 24px 20px;
         }
     </style>
     `
@@ -19,9 +19,12 @@ function setStyle() {
 
 function setHtml({ type }) {
     return `
-    <button class="v-button" type="${type}">
-        <slot></slot>
-    </button>
+    <div class="v-card">
+        <div class="v-card-header"></div>
+        <div class="v-card-content">
+            <slot></slot>
+        </div>
+    </div>
     `
 }
 
@@ -32,13 +35,16 @@ function updateAttribute(elem, name, value) {
     }
 }
 
-class VButton extends HTMLElement {
+class VCard extends HTMLElement {
     static get observedAttributes() {
-        return ['type', 'attr-type']
+        return ['title', 'attr-type']
     }
     constructor() {
         super()
         this.setShadowRoot()
+    }
+    get title() {
+        return this.getAttribute('title') || ''
     }
     setShadowRoot() {
         const shadowRoot = this.attachShadow({ mode: 'open' })
@@ -54,4 +60,4 @@ class VButton extends HTMLElement {
     }
 }
 
-customElements.define('v-button', VButton)
+customElements.define('v-card', VCard)
