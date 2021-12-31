@@ -31,7 +31,7 @@ const esPlugin = eslint({
 
 // 基础配置
 const commonConf = {
-    input: getPath('./src/index.ts'),
+    input: getPath('./packages/button/src/index.ts'),
     plugins: [
         resolve(extensions),
         commonjs(),
