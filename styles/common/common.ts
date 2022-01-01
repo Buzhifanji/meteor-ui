@@ -13,6 +13,7 @@ export const commonStyleConfig = {
     [themeVariableName.textColorPressed]: '#5dcba6',
     [themeVariableName.dangerBackgroundColor]: '#E91E63', // 危险色
     [themeVariableName.primaryBackgroundColor]: '#4CAF50',
+    [themeVariableName.infoBackgroundColor]: '#2196F3',
 
     [themeVariableName.width]: 'initial',
     [themeVariableName.height]: '34px',

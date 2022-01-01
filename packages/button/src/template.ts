@@ -44,8 +44,8 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
             }
             :host([type="info"]) {
                 color: #fff;
-                border-color: ${getStyleVarValue(themeVariableName.primaryBackgroundColor)};
-                background-color: ${getStyleVarValue(themeVariableName.primaryBackgroundColor)};
+                border-color: ${getStyleVarValue(themeVariableName.infoBackgroundColor)};
+                background-color: ${getStyleVarValue(themeVariableName.infoBackgroundColor)};
             }
             .v-button {
                 background:none; 

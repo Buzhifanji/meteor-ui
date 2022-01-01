@@ -12,6 +12,7 @@ export const enum themeVariableName {
     textColorPressed = '--v-text-color-pressed',
     dangerBackgroundColor = '--v-danger-background-color',
     primaryBackgroundColor = '--v-primary-background-color',
+    infoBackgroundColor = '--v-info-background-color',
 
     width = '--v-width',
     height = '--v-height',
