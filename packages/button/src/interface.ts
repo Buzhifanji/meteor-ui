@@ -1,5 +1,5 @@
 //
-export type ButtonType = 'default' | 'primary' | 'success' | 'info' | 'warning' | 'error'
+export type ButtonType = 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger'
 
 export type ButtonAttrType = 'button' | 'submit' | 'reset'
 

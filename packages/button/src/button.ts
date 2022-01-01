@@ -1,6 +1,7 @@
 import { VButtonType } from './interface';
 import { buttonDefaultConfig } from './default-config'
 import { renderButtonTemplate } from './template'
+import { defineCustomElement } from '../../../utils/index'
 
 function setStyle() {
     return `
@@ -47,10 +48,7 @@ export class VButton extends HTMLElement {
     }
     render() {
         const shadowRoot = this.attachShadow({ mode: 'open' })
-        const htmlParam: VButtonType = {
-            attrType: 'button'
-        }
-        shadowRoot.innerHTML = setStyle() + setHtml(htmlParam)
+        shadowRoot.innerHTML = renderButtonTemplate({})
     }
 
     attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -58,3 +56,5 @@ export class VButton extends HTMLElement {
         updateAttribute(this, name, newValue)
     }
 }
+
+defineCustomElement('v-button', VButton)
