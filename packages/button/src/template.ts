@@ -47,6 +47,11 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
                 border-color: ${getStyleVarValue(themeVariableName.infoBackgroundColor)};
                 background-color: ${getStyleVarValue(themeVariableName.infoBackgroundColor)};
             }
+            :host([type="warning"]) {
+                color: #fff;
+                border-color: ${getStyleVarValue(themeVariableName.warningBackgroundColor)};
+                background-color: ${getStyleVarValue(themeVariableName.warningBackgroundColor)};
+            }
             .v-button {
                 background:none; 
                 outline:0; 

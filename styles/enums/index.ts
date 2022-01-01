@@ -10,9 +10,12 @@ export const enum themeVariableName {
     textColor = '--v-text-color',
     backgroundColorPressed = '--v-color-pressed',
     textColorPressed = '--v-text-color-pressed',
+
+    /**** ================== v-button 按钮类型的背景颜色 ==================** */
     dangerBackgroundColor = '--v-danger-background-color',
     primaryBackgroundColor = '--v-primary-background-color',
     infoBackgroundColor = '--v-info-background-color',
+    warningBackgroundColor = '--v-warning-background-color',
 
     width = '--v-width',
     height = '--v-height',
