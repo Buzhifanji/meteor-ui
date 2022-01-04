@@ -1,5 +1,3 @@
-import { VButtonType } from './interface';
-import { buttonDefaultConfig } from './default-config'
 import { renderButtonTemplate } from './template'
 import { defineCustomElement, isNull } from '../../../utils/index'
 
