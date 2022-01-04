@@ -22,15 +22,17 @@ export class VButton extends HTMLElement {
         const template = renderButtonTemplate()
         this.shadowRoot!.appendChild(template.content.cloneNode(true));
         this.btn = this.shadowRoot!.getElementById('btn')
+        // 设置 button dom type 类型
+        this.updateAttrType('button')
     }
 
     attributeChangedCallback(name: string, oldValue: string, newValue: string) {
         console.log('name', name, oldValue, newValue)
         const hasValue = newValue !== null;
         switch (name) {
-            // case 'checked':
-            //     this.setAttribute('aria-checked', hasValue);
-            //     break;
+            case 'attr-type':
+                this.updateAttrType(newValue);
+                break;
             case 'disabled':
                 this.updateDisabled(newValue);
                 break;
@@ -40,6 +42,7 @@ export class VButton extends HTMLElement {
     }
     connectedCallback() {
         this.addEventListener('click', this.onClick)
+
     }
     disconnectedCallback() {
         this.removeEventListener('click', this.onClick);
@@ -54,6 +57,9 @@ export class VButton extends HTMLElement {
             this.setAttribute('disabled', '');
         }
     }
+    get attrType() {
+        return this.getAttribute('disabled')
+    }
     private updateDisabled(newValue: string) {
         if (this.btn) {
             if (isNull(newValue)) {
@@ -62,6 +68,11 @@ export class VButton extends HTMLElement {
             } else {
                 this.btn.setAttribute('disabled', 'disabled');
             }
+        }
+    }
+    private updateAttrType(value: string) {
+        if (this.btn) {
+            this.btn.setAttribute('type', value)
         }
     }
     private onClick() {
