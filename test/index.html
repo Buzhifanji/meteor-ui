@@ -14,14 +14,26 @@
 </head>
 
 <body>
-    <!-- <button is="v-button">default</button> -->
-    <v-button>default</v-button>
-    <v-button type="danger">danger</v-button>
-    <v-button type="primary">primary</v-button>
-    <v-button type="info">info</v-button>
-    <v-button type="warning">warning</v-button>
-    <v-button type="success">success</v-button>
-    <v-button disabled type="success">success</v-button>
+    <section>
+        <h2>基础</h2>
+        <v-button>default</v-button>
+        <v-button type="danger">danger</v-button>
+        <v-button type="primary">primary</v-button>
+        <v-button type="info">info</v-button>
+        <v-button type="warning">warning</v-button>
+        <v-button type="success">success</v-button>
+    </section>
+    <section>
+        <h2>disabled</h2>
+        <v-button disabled type="success">success</v-button>
+    </section>
+
+    <section>
+        <h2>形状shape</h2>
+        <v-button type="primary" shape="circle">circle</v-button>
+        <v-button type="primary" shape="round">round</v-button>
+        <v-button type="primary">方正的</v-button>
+    </section>
     <script src="../dist/index.esm.js" type="module"></script>
 </body>
 

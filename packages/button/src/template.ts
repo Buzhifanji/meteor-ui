@@ -1,8 +1,7 @@
-import { VButtonType } from './interface';
 import { themeVariableName } from '../../../styles/enums';
 import { getBascBackgroundColor, getStyleVarValue } from '../../../utils';
 
-export function renderButtonTemplate({ type, attrType }: VButtonType): HTMLTemplateElement {
+export function renderButtonTemplate(): HTMLTemplateElement {
     const template = document.createElement('template');
     template.innerHTML = `
         <style>
@@ -82,6 +81,12 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): HTMLTempl
                 border-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
                 background-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
             }
+            :host([shape="circle"]) {
+                border-radius: 50%;
+            }
+            :host([shape="round"]) {
+                border-radius: 34px;
+            }
             .v-button {
                 background:none; 
                 outline:0; 
@@ -101,7 +106,7 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): HTMLTempl
                 pointer-events: all;
             }
         </style>
-        <button class="v-button">
+        <button class="v-button" id="btn">
         </button>
         <slot></slot>
     `
