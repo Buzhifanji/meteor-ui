@@ -19,6 +19,7 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
                 padding: ${getStyleVarValue(themeVariableName.padding)};
                 border:1px solid var(--borderColor,rgba(0,0,0,.2)); 
                 font-size: ${getStyleVarValue(themeVariableName.fontSize)};
+                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.defaultBoxShadowColor)};
                 color: ${getStyleVarValue(themeVariableName.textColor)};
                 background-color: ${getStyleVarValue(themeVariableName.backgroundColor)};
                 border-radius: ${getStyleVarValue(themeVariableName.borderRadius)};
@@ -34,27 +35,32 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
             //     background-color: ${getStyleVarValue(themeVariableName.backgroundColorPressed)};
             // }
             :host([type="danger"]) {
+                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.dangerBoxShadowColor)};
                 color: #fff;
                 border-color: ${getBascBackgroundColor(themeVariableName.dangerBackgroundColor)};
                 background-color: ${getBascBackgroundColor(themeVariableName.dangerBackgroundColor)};
             }
             :host([type="primary"]) {
                 color: #fff;
+                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.primaryBoxShadowColor)};
                 border-color: ${getBascBackgroundColor(themeVariableName.primaryBackgroundColor)};
                 background-color: ${getBascBackgroundColor(themeVariableName.primaryBackgroundColor)};
             }
             :host([type="info"]) {
                 color: #fff;
+                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.infoBoxShadowColor)};
                 border-color: ${getBascBackgroundColor(themeVariableName.infoBackgroundColor)};
                 background-color: ${getBascBackgroundColor(themeVariableName.infoBackgroundColor)};
             }
             :host([type="warning"]) {
                 color: #fff;
+                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.warningBoxShadowColor)};
                 border-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
                 background-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
             }
             :host([type="success"]) {
                 color: #fff;
+                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.successBoxShadowColor)};
                 border-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
                 background-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
             }

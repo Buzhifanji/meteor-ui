@@ -1,11 +1,17 @@
 import { themeVariableName } from "../enums";
 
 export const basicBackgroundColor = {
-    [themeVariableName.dangerBackgroundColor]: '#E91E63', // 危险色
-    [themeVariableName.primaryBackgroundColor]: '#6777ef',
-    [themeVariableName.infoBackgroundColor]: '#2196F3',
-    [themeVariableName.warningBackgroundColor]: '#FFC107',
-    [themeVariableName.successBackgroundColor]: '#63ed7a',
+    [themeVariableName.dangerBackgroundColor]: '#E91E63', // danger
+    [themeVariableName.dangerBoxShadowColor]: '#fd9b96',
+    [themeVariableName.primaryBackgroundColor]: '#6777ef', // primary
+    [themeVariableName.primaryBoxShadowColor]: '#acb5f6',
+    [themeVariableName.infoBackgroundColor]: '#2196F3',// info
+    [themeVariableName.infoBoxShadowColor]: '#82d3f8',
+    [themeVariableName.warningBackgroundColor]: '#FFC107',// warning
+    [themeVariableName.warningBoxShadowColor]: '#ffc473',
+    [themeVariableName.successBackgroundColor]: '#63ed7a',// success
+    [themeVariableName.successBoxShadowColor]: '#a8f5b4',
+    [themeVariableName.defaultBoxShadowColor]: '#e1e5e8',
 }
 
 export const commonStyleConfig = {
