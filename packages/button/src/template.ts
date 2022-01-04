@@ -2,8 +2,9 @@ import { VButtonType } from './interface';
 import { themeVariableName } from '../../../styles/enums';
 import { getBascBackgroundColor, getStyleVarValue } from '../../../utils';
 
-export function renderButtonTemplate({ type, attrType }: VButtonType): string {
-    return `
+export function renderButtonTemplate({ type, attrType }: VButtonType): HTMLTemplateElement {
+    const template = document.createElement('template');
+    template.innerHTML = `
         <style>
             :host{ 
                 position:relative; 
@@ -27,6 +28,14 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
                             background-color .3s ${getStyleVarValue(themeVariableName.bezier)},
                             opacity .3s ${getStyleVarValue(themeVariableName.bezier)},
                             border-color .3s ${getStyleVarValue(themeVariableName.bezier)};
+            }
+            :host([disabled]),
+            :host([loading]){
+                pointer-events: none; 
+                opacity:.6; 
+            }
+            :host([disabled]:not([type])){ 
+                background:rgba(0,0,0,.1); 
             }
             :host(:not([disabled]):hover), 
             :host(:not([disabled]):focus ){
@@ -87,37 +96,14 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
                 user-select: none;
                 cursor: unset;
             }
-            .v-button::before{
-                content: "";
-                display: block;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left:0;
-                top:0;
-                transition:.2s;
-                background:#fff;
-                opacity:0;
-            }
-            .v-button::after {
-                content: "";
-                display: block;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: var(--x,0); 
-                top: var(--y,0);
-                pointer-events: none;
-                background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
-                background-repeat: no-repeat;
-                background-position: 50%;
-                transform: translate(-50%,-50%) scale(10);
-                opacity: 0;
-                transition: transform .3s, opacity .8s;
+            :host([disabled]) .v-button {
+                cursor: not-allowed;
+                pointer-events: all;
             }
         </style>
         <button class="v-button">
         </button>
         <slot></slot>
     `
+    return template
 } 
