@@ -1,5 +1,12 @@
 import { themeVariableName } from "../enums";
 
+export const basicBackgroundColor = {
+    [themeVariableName.dangerBackgroundColor]: '#E91E63', // 危险色
+    [themeVariableName.primaryBackgroundColor]: '#6777ef',
+    [themeVariableName.infoBackgroundColor]: '#2196F3',
+    [themeVariableName.warningBackgroundColor]: '#FFC107',
+}
+
 export const commonStyleConfig = {
     [themeVariableName.fontWeight]: 400,
     [themeVariableName.fontSize]: '14px', // 字体大小
@@ -11,12 +18,6 @@ export const commonStyleConfig = {
     [themeVariableName.textColor]: '#333',
     [themeVariableName.backgroundColorPressed]: '#666',
     [themeVariableName.textColorPressed]: '#5dcba6',
-
-    /**** ================== v-button 按钮类型的背景颜色 ==================** */
-    [themeVariableName.dangerBackgroundColor]: '#E91E63', // 危险色
-    [themeVariableName.primaryBackgroundColor]: '#4CAF50',
-    [themeVariableName.infoBackgroundColor]: '#2196F3',
-    [themeVariableName.warningBackgroundColor]: '#FFC107',
 
     [themeVariableName.width]: 'initial',
     [themeVariableName.height]: '34px',

@@ -1,6 +1,7 @@
 import { VButtonType } from './interface';
 import { themeVariableName } from '../../../styles/enums';
-import { getStyleVarValue } from '../../../utils/handle-components';
+import { getBascBackgroundColor, getStyleVarValue } from '../../../utils';
+
 export function renderButtonTemplate({ type, attrType }: VButtonType): string {
     return `
         <style>
@@ -34,23 +35,23 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
             // }
             :host([type="danger"]) {
                 color: #fff;
-                border-color: ${getStyleVarValue(themeVariableName.dangerBackgroundColor)};
-                background-color: ${getStyleVarValue(themeVariableName.dangerBackgroundColor)};
+                border-color: ${getBascBackgroundColor(themeVariableName.dangerBackgroundColor)};
+                background-color: ${getBascBackgroundColor(themeVariableName.dangerBackgroundColor)};
             }
             :host([type="primary"]) {
                 color: #fff;
-                border-color: ${getStyleVarValue(themeVariableName.primaryBackgroundColor)};
-                background-color: ${getStyleVarValue(themeVariableName.primaryBackgroundColor)};
+                border-color: ${getBascBackgroundColor(themeVariableName.primaryBackgroundColor)};
+                background-color: ${getBascBackgroundColor(themeVariableName.primaryBackgroundColor)};
             }
             :host([type="info"]) {
                 color: #fff;
-                border-color: ${getStyleVarValue(themeVariableName.infoBackgroundColor)};
-                background-color: ${getStyleVarValue(themeVariableName.infoBackgroundColor)};
+                border-color: ${getBascBackgroundColor(themeVariableName.infoBackgroundColor)};
+                background-color: ${getBascBackgroundColor(themeVariableName.infoBackgroundColor)};
             }
             :host([type="warning"]) {
                 color: #fff;
-                border-color: ${getStyleVarValue(themeVariableName.warningBackgroundColor)};
-                background-color: ${getStyleVarValue(themeVariableName.warningBackgroundColor)};
+                border-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
+                background-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
             }
             .v-button {
                 background:none; 
