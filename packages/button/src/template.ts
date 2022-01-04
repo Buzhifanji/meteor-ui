@@ -28,12 +28,21 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
                             opacity .3s ${getStyleVarValue(themeVariableName.bezier)},
                             border-color .3s ${getStyleVarValue(themeVariableName.bezier)};
             }
-            // :host(:not([disabled]):active){
-            //     z-index:1;
-            //     transform:translateY(.1px);
-            //     color: ${getStyleVarValue(themeVariableName.textColorPressed)};
-            //     background-color: ${getStyleVarValue(themeVariableName.backgroundColorPressed)};
-            // }
+            :host(:not([disabled]):hover), 
+            :host(:not([disabled]):focus ){
+                border-color: rgba(0, 0, 0, 0.25);
+                box-shadow: rgba(0, 0, 0, 0.25) 0 4px 12px;
+            }
+            :host(:not([disabled]):active){
+                border-color: rgba(0, 0, 0, 0.15);
+                box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+                transform: translateY(0em);
+            }
+
+            :host(:not([disabled]):hover){
+                border-color:transparent;
+                transform: translateY(-0.25px);
+            }
             :host([type="danger"]) {
                 box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.dangerBoxShadowColor)};
                 color: #fff;
