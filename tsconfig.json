@@ -9,10 +9,9 @@
         "jsx": "preserve", // jsx 不转
         "noLib": false, // 不处理类库
         "target": "es6", // 遵循es6版本
-        "sourceMap": true,
         "lib": [ // 编译时用的库
-          "ESNext",
-          "DOM"
+            "ESNext",
+            "DOM"
         ],
         "allowSyntheticDefaultImports": true, // 允许没有导出的模块中导入
         "experimentalDecorators": true, // 装饰器语法
@@ -20,17 +19,23 @@
         "resolveJsonModule": true, // 解析json模块
         "strict": true, // 是否启动严格模式
         "skipLibCheck": true, // 跳过类库检测
+        "outDir": "out-tsc", // 编译ts代码存放的位置
+        "sourceMap": true,
+        "inlineSources": true,
+        "rootDir": "./",
+        "baseUrl": ".",
+        "incremental": true,
         "paths": {
             "@vanilla-ui/type": ["packages/*/type"],
             "@vanilla-ui/": ["packages/"],
         }
     },
-    
+
     "exclude": [
         "node_modules",
         "**/__tests__",
-         "scripts"
-        ]
+        "scripts"
+    ]
 }
 
 // "devDependencies": {

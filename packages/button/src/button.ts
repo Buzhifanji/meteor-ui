@@ -3,33 +3,6 @@ import { buttonDefaultConfig } from './default-config'
 import { renderButtonTemplate } from './template'
 import { defineCustomElement } from '../../../utils/index'
 
-function setStyle() {
-    return `
-    <style>
-        :host > .my-image {/*  */
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-            width: 100px;
-            height: 100px;
-        }
-        :host .my-image_inner {
-            vertical-align: top;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-    `
-}
-
-function setHtml({ attrType }: VButtonType) {
-    return `
-    <button class="v-button" type="${attrType}">
-        <slot></slot>
-    </button>
-    `
-}
-
 function updateAttribute(elem: HTMLElement, name: string, value: string) {
     const shadow = elem.shadowRoot as ShadowRoot;
     if (name === 'attr-type') {

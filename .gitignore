@@ -1,4 +1,8 @@
 node_modules
 .pnpm-debug.log
+yarn.lock
+yarn-error.log
 pnpm-lock.yaml
 dist
+out-tsc
+coverage
