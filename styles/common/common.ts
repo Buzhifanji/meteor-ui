@@ -5,6 +5,7 @@ export const basicBackgroundColor = {
     [themeVariableName.primaryBackgroundColor]: '#6777ef',
     [themeVariableName.infoBackgroundColor]: '#2196F3',
     [themeVariableName.warningBackgroundColor]: '#FFC107',
+    [themeVariableName.successBackgroundColor]: '#63ed7a',
 }
 
 export const commonStyleConfig = {

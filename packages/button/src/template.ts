@@ -53,6 +53,11 @@ export function renderButtonTemplate({ type, attrType }: VButtonType): string {
                 border-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
                 background-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
             }
+            :host([type="success"]) {
+                color: #fff;
+                border-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
+                background-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
+            }
             .v-button {
                 background:none; 
                 outline:0; 
