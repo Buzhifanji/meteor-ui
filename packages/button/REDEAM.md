@@ -1,1 +1,1 @@
-# @vanilla-ui/button
+# @vanilla-ui/v-button
