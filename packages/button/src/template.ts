@@ -1,8 +1,9 @@
+import { getTemplate } from 'utils/components';
 import { themeVariableName } from '../../../styles/enums';
 import { getBascBackgroundColor, getStyleVarValue } from '../../../utils';
 
 export function renderButtonTemplate(): HTMLTemplateElement {
-    const template = document.createElement('template');
+    const template = getTemplate();
     template.innerHTML = `
         <style>
             :host{ 
