@@ -1,13 +1,6 @@
 import { renderButtonTemplate } from './template'
 import { defineCustomElement, isNull } from '../../../utils/index'
 
-function updateAttribute(elem: HTMLElement, name: string, value: string) {
-    const shadow = elem.shadowRoot as ShadowRoot;
-    if (name === 'attr-type') {
-        shadow.querySelector('button')?.setAttribute('type', value)
-    }
-}
-
 export class VButton extends HTMLElement {
     btn: Element | null = null;
     static get observedAttributes() {
@@ -27,8 +20,6 @@ export class VButton extends HTMLElement {
     }
 
     attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-        console.log('name', name, oldValue, newValue)
-        const hasValue = newValue !== null;
         switch (name) {
             case 'attr-type':
                 this.updateAttrType(newValue);
@@ -38,7 +29,6 @@ export class VButton extends HTMLElement {
                 break;
 
         }
-        // updateAttribute(this, name, newValue)
     }
     connectedCallback() {
         this.addEventListener('click', this.onClick)
