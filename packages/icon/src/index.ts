@@ -1,0 +1,1 @@
+export { VIcon } from './icon'
