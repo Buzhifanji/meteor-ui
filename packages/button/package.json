@@ -19,8 +19,8 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/vuejs/vue-next.git",
-        "directory": "packages/icon"
+        "url": "git+https://github.com/Buzhifanji/vanilla-ui.git",
+        "directory": "packages/button"
     },
     "keywords": [
         "vanilla-ui"
@@ -28,9 +28,9 @@
     "author": "buzhifanji",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/vuejs/vue-next/issues"
+        "url": "https://github.com/Buzhifanji/vanilla-ui/issues"
     },
-    "homepage": "https://github.com/vuejs/vue-next/tree/master/packages/compiler-core#readme",
+    "homepage": "https://github.com/Buzhifanji/vanilla-ui/blob/master/packages/button/REDEAM.md",
     "dependencies": {
 
     }
