@@ -1,17 +1,41 @@
+import { defineCustomElement } from "utils"
 import { renderIconTemplate } from "./template"
 
+const pureNumberRegex = /^(\d|\.)+$/
+
 export class VIcon extends HTMLElement {
-    static get observedAttributes() { return ['name', 'size', 'color', 'path'] }
+    static get observedAttributes() { return ['size'] }
     constructor() {
         super()
         this.render()
     }
     private render() {
         this.attachShadow({ mode: 'open' })
-        const template = renderIconTemplate({ view: 1024, path: 'M368.5 240H272v-96.5c0-8.8-7.2-16-16-16s-16 7.2-16 16V240h-96.5c-8.8 0-16 7.2-16 16 0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7H240v96.5c0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7 8.8 0 16-7.2 16-16V272h96.5c8.8 0 16-7.2 16-16s-7.2-16-16-16z' })
+        const template = renderIconTemplate()
         this.shadowRoot!.appendChild(template.content.cloneNode(true));
     }
-    has() {
 
+    get size() {
+        return this.getAttribute('size') || '';
+    }
+    set size(value: string) {
+        this.setAttribute('size', value);
+    }
+    attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+        switch (name) {
+            case 'size':
+                this.updateSize(newValue)
+                break;
+        }
+    }
+    private updateSize(value: string) {
+        const slot = this.shadowRoot!.querySelector('slot')
+        if (slot) {
+            // 支持 40 40px 40em 40rem
+            // 默认 px
+            const result = pureNumberRegex.test(value) ? value + 'px' : value
+            slot.style.fontSize = result;
+        }
     }
 }
+defineCustomElement('v-icon', VIcon)

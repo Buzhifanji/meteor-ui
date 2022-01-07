@@ -110,7 +110,6 @@ export function renderButtonTemplate(): HTMLTemplateElement {
         <button class="v-button" id="btn">
         </button>
         <slot></slot>
-        
     `
     return template
 } 

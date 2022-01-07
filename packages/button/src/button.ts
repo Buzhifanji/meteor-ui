@@ -12,6 +12,11 @@ export class VButton extends HTMLElement {
     }
     private render() {
         this.attachShadow({ mode: 'open' })
+        // fetch('./index.css').then(res => res.text()).then(data => {
+        //     const node = document.createElement('style')
+        //     node.innerHTML = data
+        //     this.shadowRoot!.appendChild(node)
+        // })
         const template = renderButtonTemplate()
         this.shadowRoot!.appendChild(template.content.cloneNode(true));
         this.btn = this.shadowRoot!.getElementById('btn')
