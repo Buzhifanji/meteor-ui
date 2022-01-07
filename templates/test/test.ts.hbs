@@ -1,0 +1,12 @@
+import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
+import { V{{properCase name}} } from '../src'
+
+describe('v-{{name}}', () => {
+it('loads default', async () => {
+const el = await fixture<V{{properCase name}}>(html` <v-{{name}}>{{properCase name}}n</v-{{name}}> `);
+    await elementUpdated(el);
+    expect(el).to.not.be.undefined;
+    expect(el.textContent).to.include('{{properCase name}}');
+    await expect(el).to.be.accessible();
+    });
+    });

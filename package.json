@@ -8,7 +8,8 @@
     "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
     "test": "tsc && web-test-runner  \"out-tsc/**/*.test.{html,js}\" --node-resolve --coverage  --playwright --browsers chromium firefox webkit",
-    "test:watch": "web-test-runner \"test/**/*.test.ts\" --node-resolve --watch"
+    "test:watch": "web-test-runner \"test/**/*.test.ts\" --node-resolve --watch",
+    "plop": "plop"
   },
   "license": "MIT",
   "devDependencies": {
@@ -25,6 +26,7 @@
     "chalk": "^4.1.0",
     "eslint": "^8.0.0",
     "execa": "^4.0.2",
+    "plop": "^3.0.5",
     "rollup": "^2.61.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-eslint": "^7.0.0",
