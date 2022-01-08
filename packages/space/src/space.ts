@@ -6,10 +6,11 @@ import { getSpaceStyle, renderSpaceTemplate } from "./template";
 const INLINE = "inline";
 const JUSTIFY = "justify";
 const SIZE = "size";
+const VERTICAL = "vertical";
 
 export class VSpace extends HTMLElement {
   static get observedAttributes() {
-    return [INLINE, JUSTIFY];
+    return [INLINE, JUSTIFY, SIZE, VERTICAL];
   }
   constructor() {
     super();
@@ -44,9 +45,20 @@ export class VSpace extends HTMLElement {
     }
     return size;
   }
+  get vertical() {
+    return this.getAttribute(VERTICAL) !== null;
+  }
+  set vertical(value) {
+    if (value === null || value === false) {
+      this.removeAttribute(VERTICAL);
+    } else {
+      this.setAttribute(VERTICAL, "");
+    }
+  }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     switch (name) {
       case INLINE:
+      case VERTICAL:
       case JUSTIFY:
         this.updateStyle();
         break;
@@ -99,10 +111,14 @@ export class VSpace extends HTMLElement {
     }
     return result;
   }
+  private updateVertical() {
+    return this.vertical ? "column" : "row";
+  }
   private updateStyle() {
     const result: SapceHostStyle = {
       display: this.updateInline(),
       justify: this.updateJustify(),
+      vertical: this.updateVertical(),
     };
     const style = this.shadowRoot!.querySelector("style")!;
     style.textContent = getSpaceStyle(result);
