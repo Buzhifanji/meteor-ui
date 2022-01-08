@@ -1,0 +1,36 @@
+{
+"name": "@vanilla-ui/v-space",
+"version": "1.0.0",
+"description": "@vanilla-ui/v-space",
+"main": "index.js",
+"module": "dist/v-space.esm.js",
+"types": "dist/v-space.d.ts",
+"files": [
+"index.js",
+"dist"
+],
+"buildOptions": {
+"name": "VanillaUiSpace",
+"compat": true,
+"formats": [
+"esm-bundler",
+"cjs"
+]
+},
+"repository": {
+"type": "git",
+"url": "git+https://github.com/Buzhifanji/vanilla-ui.git",
+"directory": "packages/space"
+},
+"keywords": [
+"vanilla-ui"
+],
+"author": "buzhifanji",
+"license": "MIT",
+"bugs": {
+"url": "https://github.com/Buzhifanji/vanilla-ui/issues"
+},
+"homepage": "https://github.com/Buzhifanji/vanilla-ui/blob/master/packages/space/REDEAM.md",
+"dependencies": {
+}
+}

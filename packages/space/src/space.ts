@@ -1,7 +1,7 @@
 import { defineCustomElement } from "utils";
-import { renderLayoutTemplate } from "./template";
+import { renderSpaceTemplate } from "./template";
 
-export class VLayout extends HTMLElement {
+export class VSpace extends HTMLElement {
   static get observedAttributes() {
     return [];
   }
@@ -11,7 +11,7 @@ export class VLayout extends HTMLElement {
   }
   private render() {
     this.attachShadow({ mode: "open" });
-    const template = renderLayoutTemplate();
+    const template = renderSpaceTemplate();
     this.shadowRoot!.appendChild(template.content.cloneNode(true));
   }
 
@@ -19,4 +19,4 @@ export class VLayout extends HTMLElement {
   connectedCallback() {}
   disconnectedCallback() {}
 }
-defineCustomElement("v-layout", VLayout);
+defineCustomElement("v-space", VSpace);
