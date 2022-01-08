@@ -65,6 +65,9 @@ async function build(target) {
   const env =
     (pkg.buildOptions && pkg.buildOptions.env) ||
     (devOnly ? 'development' : 'production')
+  console.log(
+    chalk.bold(chalk.green(`Rolling up type definitions for ${target}...`))
+  )
   await execa('rollup', [
     '-wc',
     '--environment',
@@ -73,4 +76,5 @@ async function build(target) {
       `NODE_ENV:${env}`,
     ],
   ])
+
 }
