@@ -7,6 +7,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .space-align-container {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .space-align-block {
+      margin: 8px 4px;
+      border: 1px solid #40a9ff;
+      padding: 4px;
+      flex: none;
+      width: 300px;
+      display: inline-flex;
+    }
+
+    .space-align-block .mock-block {
+      display: inline-block;
+      padding: 32px 8px 16px;
+      background: rgba(150, 150, 150, 0.2);
+    }
+  </style>
 </head>
 
 <body>
@@ -70,7 +92,7 @@
     <section>
       <h3>justify-end</h3>
       <section>
-        <v-space justify="end">
+        <v-space justify="flex-end">
           <span>sapce</span>
           <v-button>default</v-button>
           <v-button>default</v-button>
@@ -150,6 +172,46 @@
           <v-button>default</v-button>
           <v-button>default</v-button>
         </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>align</h3>
+      <section class="space-align-container">
+        <div class="space-align-block">
+          <v-space>
+            <span>default</span>
+            <v-button type="primary">default</v-button>
+            <span class="mock-block">Block</span>
+          </v-space>
+        </div>
+        <div class="space-align-block">
+          <v-space align="center">
+            <span>center</span>
+            <v-button type="primary">center</v-button>
+            <span class="mock-block">Block</span>
+          </v-space>
+        </div>
+        <div class="space-align-block">
+          <v-space align="baseline">
+            <span>baseline</span>
+            <v-button type="primary">baseline</v-button>
+            <span class="mock-block">Block</span>
+          </v-space>
+        </div>
+        <div class="space-align-block">
+          <v-space align="flex-start">
+            <span>flex-start</span>
+            <v-button type="primary">flex-start</v-button>
+            <span class="mock-block">Block</span>
+          </v-space>
+        </div>
+        <div class="space-align-block">
+          <v-space align="flex-end">
+            <span>flex-end</span>
+            <v-button type="primary">flex-end</v-button>
+            <span class="mock-block">Block</span>
+          </v-space>
+        </div>
       </section>
     </section>
   </section>

@@ -1,16 +1,17 @@
 import { defineCustomElement } from "utils";
 import { getNumberAndUnit } from "utils/style";
-import { SapceHostStyle } from "./interface";
+import { Align, Justify, SapceHostStyle } from "./interface";
 import { getSpaceStyle, renderSpaceTemplate } from "./template";
 
 const INLINE = "inline";
 const JUSTIFY = "justify";
 const SIZE = "size";
 const VERTICAL = "vertical";
+const ALIGN = "align";
 
 export class VSpace extends HTMLElement {
   static get observedAttributes() {
-    return [INLINE, JUSTIFY, SIZE, VERTICAL];
+    return [INLINE, JUSTIFY, SIZE, VERTICAL, ALIGN];
   }
   constructor() {
     super();
@@ -28,7 +29,7 @@ export class VSpace extends HTMLElement {
     }
   }
   get justify() {
-    return this.getAttribute(JUSTIFY) || "flex-start";
+    return (this.getAttribute(JUSTIFY) as Justify) || "flex-start";
   }
   get size() {
     let size = this.getAttribute(SIZE);
@@ -55,10 +56,14 @@ export class VSpace extends HTMLElement {
       this.setAttribute(VERTICAL, "");
     }
   }
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  get align() {
+    return (this.getAttribute(ALIGN) as Align) || "stretch";
+  }
+  attributeChangedCallback(name: string) {
     switch (name) {
       case INLINE:
       case VERTICAL:
+      case ALIGN:
       case JUSTIFY:
         this.updateStyle();
         break;
@@ -95,34 +100,15 @@ export class VSpace extends HTMLElement {
   private updateInline() {
     return this.inline ? "inline-flex" : "flex";
   }
-  private updateJustify() {
-    let result = "flex-start";
-    switch (this.justify) {
-      case "start":
-        break;
-      case "end":
-        result = "flex-end";
-        break;
-      case "center":
-        result = "center";
-        break;
-      case "space-around":
-        result = "space-around";
-        break;
-      case "space-between":
-        result = "space-between";
-        break;
-    }
-    return result;
-  }
   private updateVertical() {
     return this.vertical ? "column" : "row";
   }
   private updateStyle() {
     const result: SapceHostStyle = {
       display: this.updateInline(),
-      justify: this.updateJustify(),
+      justify: this.justify,
       vertical: this.updateVertical(),
+      align: this.align,
     };
     const style = this.shadowRoot!.querySelector("style")!;
     style.textContent = getSpaceStyle(result);

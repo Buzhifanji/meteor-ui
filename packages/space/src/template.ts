@@ -9,25 +9,27 @@ export function renderSpaceTemplate(): HTMLTemplateElement {
           display: "flex",
           justify: "flex-start",
           vertical: "row;",
+          align: "stretch",
         })}
-      ::slotted() {
-          
-      }
     </style>
     <slot></slot>
 `;
   return template;
 }
 
-export function getSpaceStyle({ display, justify, vertical }: SapceHostStyle) {
+export function getSpaceStyle({
+  display,
+  justify,
+  vertical,
+  align,
+}: SapceHostStyle) {
   return `
     :host {
         display: ${display};
         flex-flow: row wrap;
         justify-content: ${justify};
         flex-direction: ${vertical};
-        // margin-top: -4px;
-        // margin-bottom: -4px;
+        align-items: ${align};
       }
     `;
 }
