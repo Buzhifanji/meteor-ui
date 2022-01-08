@@ -81,9 +81,13 @@ export class VSpace extends HTMLElement {
       children.forEach((element, index) => {
         if (index !== children.length - 1) {
           const value = getNumberAndUnit(this.size);
+          // 是否垂直布局
+          const style = this.vertical
+            ? `margin-bottom: ${value}`
+            : `margin-right: ${value}`;
           // 设置间距
           // 注意：每个 element 需要标签包裹，不然间距不生效
-          element.setAttribute("style", `margin-right: ${value}`);
+          element.setAttribute("style", style);
         }
       });
     });
