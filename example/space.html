@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>vanilla</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <section>
+    <h1>v-space</h1>
+    <section>
+      <h3>base</h3>
+      <section>
+        <v-space>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>错误用法</h3>
+      <section>
+        <v-space>
+          sapce
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>正确用法</h3>
+      <section>
+        <v-space>
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>inline-flex</h3>
+      <section>
+        <v-space inline>
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+        <v-space inline>
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>justify-center</h3>
+      <section>
+        <v-space justify="center">
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>justify-end</h3>
+      <section>
+        <v-space justify="end">
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>justify-space-around</h3>
+      <section>
+        <v-space justify="space-around">
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+    <section>
+      <h3>justify-space-between</h3>
+      <section>
+        <v-space justify="space-between">
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+      </section>
+    </section>
+  </section>
+  <script src="../dist/space.esm.js" type="module"></script>
+  <script src="../dist/button.esm.js" type="module"></script>
+</body>
+
+</html>
