@@ -1,4 +1,5 @@
 import { defineCustomElement } from "utils";
+import { isAttrFalse } from "utils/judgment";
 import { getNumberAndUnit } from "utils/style";
 import { Align, Justify, SapceHostStyle } from "./interface";
 import { getSpaceStyle, renderSpaceTemplate } from "./template";
@@ -8,10 +9,11 @@ const JUSTIFY = "justify";
 const SIZE = "size";
 const VERTICAL = "vertical";
 const ALIGN = "align";
+const WARP = "wrap";
 
 export class VSpace extends HTMLElement {
   static get observedAttributes() {
-    return [INLINE, JUSTIFY, SIZE, VERTICAL, ALIGN];
+    return [INLINE, JUSTIFY, SIZE, VERTICAL, ALIGN, WARP];
   }
   constructor() {
     super();
@@ -22,7 +24,7 @@ export class VSpace extends HTMLElement {
     return this.getAttribute(INLINE) !== null;
   }
   set inline(value) {
-    if (value === null || value === false) {
+    if (isAttrFalse(value)) {
       this.removeAttribute(INLINE);
     } else {
       this.setAttribute(INLINE, "");
@@ -50,7 +52,7 @@ export class VSpace extends HTMLElement {
     return this.getAttribute(VERTICAL) !== null;
   }
   set vertical(value) {
-    if (value === null || value === false) {
+    if (isAttrFalse(value)) {
       this.removeAttribute(VERTICAL);
     } else {
       this.setAttribute(VERTICAL, "");
@@ -59,12 +61,23 @@ export class VSpace extends HTMLElement {
   get align() {
     return (this.getAttribute(ALIGN) as Align) || "stretch";
   }
+  get wrap() {
+    return this.getAttribute(WARP) !== null;
+  }
+  set wrap(value) {
+    if (isAttrFalse(value)) {
+      this.removeAttribute(WARP);
+    } else {
+      this.setAttribute(WARP, "");
+    }
+  }
   attributeChangedCallback(name: string) {
     switch (name) {
       case INLINE:
       case VERTICAL:
       case ALIGN:
       case JUSTIFY:
+      case WARP:
         this.updateStyle();
         break;
       case SIZE:
@@ -72,8 +85,6 @@ export class VSpace extends HTMLElement {
         break;
     }
   }
-  connectedCallback() {}
-  disconnectedCallback() {}
   private render() {
     this.attachShadow({ mode: "open" });
     const template = renderSpaceTemplate();
@@ -103,12 +114,16 @@ export class VSpace extends HTMLElement {
   private updateVertical() {
     return this.vertical ? "column" : "row";
   }
+  private updateWrap() {
+    return !this.wrap || this.vertical ? "nowrap" : "wrap";
+  }
   private updateStyle() {
     const result: SapceHostStyle = {
       display: this.updateInline(),
       justify: this.justify,
       vertical: this.updateVertical(),
       align: this.align,
+      wrap: this.updateWrap(),
     };
     const style = this.shadowRoot!.querySelector("style")!;
     style.textContent = getSpaceStyle(result);

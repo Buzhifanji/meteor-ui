@@ -1,5 +1,6 @@
 import { renderButtonTemplate } from "./template";
 import { defineCustomElement, isNull } from "../../../utils/index";
+import { isAttrFalse } from "utils/judgment";
 
 export class VButton extends HTMLElement {
   btn: Element | null = null;
@@ -44,7 +45,7 @@ export class VButton extends HTMLElement {
     return this.getAttribute("disabled") !== null;
   }
   set disabled(value) {
-    if (value === null || value === false) {
+    if (isAttrFalse(value)) {
       this.removeAttribute("disabled");
     } else {
       this.setAttribute("disabled", "");

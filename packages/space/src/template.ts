@@ -10,6 +10,7 @@ export function renderSpaceTemplate(): HTMLTemplateElement {
           justify: "flex-start",
           vertical: "row;",
           align: "stretch",
+          wrap: "wrap",
         })}
     </style>
     <slot></slot>
@@ -22,6 +23,7 @@ export function getSpaceStyle({
   justify,
   vertical,
   align,
+  wrap,
 }: SapceHostStyle) {
   return `
     :host {
@@ -30,6 +32,7 @@ export function getSpaceStyle({
         justify-content: ${justify};
         flex-direction: ${vertical};
         align-items: ${align};
+        flex-wrap: ${wrap};
       }
     `;
 }
