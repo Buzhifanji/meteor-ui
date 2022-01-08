@@ -42,7 +42,7 @@ export class VButton extends HTMLElement {
     this.removeEventListener("click", this.onClick);
   }
   get disabled() {
-    return this.getAttribute("disabled") !== null;
+    return !isAttrFalse(this.getAttribute("disabled"));
   }
   set disabled(value) {
     if (isAttrFalse(value)) {
@@ -57,7 +57,6 @@ export class VButton extends HTMLElement {
   private updateDisabled(newValue: string) {
     if (this.btn) {
       if (isNull(newValue)) {
-        // this.shadowRoot.removeChild(this.load);
         this.btn.removeAttribute("disabled");
       } else {
         this.btn.setAttribute("disabled", "disabled");

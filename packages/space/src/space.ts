@@ -21,7 +21,7 @@ export class VSpace extends HTMLElement {
     this.onSlotChange();
   }
   get inline() {
-    return this.getAttribute(INLINE) !== null;
+    return !isAttrFalse(this.getAttribute(INLINE));
   }
   set inline(value) {
     if (isAttrFalse(value)) {
