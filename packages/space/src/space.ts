@@ -1,9 +1,11 @@
 import { defineCustomElement } from "utils";
+import { getNumberAndUnit } from "utils/style";
 import { SapceHostStyle } from "./interface";
 import { getSpaceStyle, renderSpaceTemplate } from "./template";
 
 const INLINE = "inline";
 const JUSTIFY = "justify";
+const SIZE = "size";
 
 export class VSpace extends HTMLElement {
   static get observedAttributes() {
@@ -27,11 +29,17 @@ export class VSpace extends HTMLElement {
   get justify() {
     return this.getAttribute(JUSTIFY) || "flex-start";
   }
+  get size() {
+    return this.getAttribute(SIZE) || "12px";
+  }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     switch (name) {
       case INLINE:
       case JUSTIFY:
         this.updateStyle();
+        break;
+      case SIZE:
+        this.onSlotChange();
         break;
     }
   }
@@ -46,9 +54,10 @@ export class VSpace extends HTMLElement {
     const slot = this.shadowRoot!.querySelector("slot")!;
     slot.addEventListener("slotchange", () => {
       slot.assignedElements().forEach((element) => {
+        const value = getNumberAndUnit(this.size);
         // 设置间距
         // 注意：每个 element 需要标签包裹，不然间距不生效
-        element.setAttribute("style", "margin-right: 12px");
+        element.setAttribute("style", `margin-right: ${value}`);
       });
     });
   }

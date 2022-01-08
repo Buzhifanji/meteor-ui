@@ -1,7 +1,6 @@
 import { defineCustomElement } from "utils";
+import { getNumberAndUnit } from "utils/style";
 import { renderIconTemplate } from "./template";
-
-const pureNumberRegex = /^(\d|\.)+$/;
 
 export class VIcon extends HTMLElement {
   static get observedAttributes() {
@@ -33,10 +32,7 @@ export class VIcon extends HTMLElement {
   private updateSize(value: string) {
     const slot = this.shadowRoot!.querySelector("slot");
     if (slot) {
-      // 支持 40 40px 40em 40rem
-      // 默认 px
-      const result = pureNumberRegex.test(value) ? value + "px" : value;
-      slot.style.fontSize = result;
+      slot.style.fontSize = getNumberAndUnit(value);
     }
   }
 }
