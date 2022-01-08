@@ -53,11 +53,14 @@ export class VSpace extends HTMLElement {
   private onSlotChange() {
     const slot = this.shadowRoot!.querySelector("slot")!;
     slot.addEventListener("slotchange", () => {
-      slot.assignedElements().forEach((element) => {
-        const value = getNumberAndUnit(this.size);
-        // 设置间距
-        // 注意：每个 element 需要标签包裹，不然间距不生效
-        element.setAttribute("style", `margin-right: ${value}`);
+      const children = slot.assignedElements();
+      children.forEach((element, index) => {
+        if (index !== children.length - 1) {
+          const value = getNumberAndUnit(this.size);
+          // 设置间距
+          // 注意：每个 element 需要标签包裹，不然间距不生效
+          element.setAttribute("style", `margin-right: ${value}`);
+        }
       });
     });
   }
