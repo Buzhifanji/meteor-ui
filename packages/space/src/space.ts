@@ -30,7 +30,19 @@ export class VSpace extends HTMLElement {
     return this.getAttribute(JUSTIFY) || "flex-start";
   }
   get size() {
-    return this.getAttribute(SIZE) || "12px";
+    let size = this.getAttribute(SIZE);
+    if (size) {
+      if (size === "small") {
+        size = "12px";
+      } else if (size === "middle") {
+        size = "24px";
+      } else if (size === "large") {
+        size = "36px";
+      }
+    } else {
+      size = "12px";
+    }
+    return size;
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     switch (name) {
