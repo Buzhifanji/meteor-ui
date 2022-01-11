@@ -1,12 +1,23 @@
-import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
-import { VSpace } from '../src'
+// import { defineCustomElement, render } from "utils";
+// import { VSpace } from "../src";
 
-describe('v-space', () => {
-it('loads default', async () => {
-const el = await fixture<VSpace>(html` <v-space>Spacen</v-space> `);
-    await elementUpdated(el);
-    expect(el).to.not.be.undefined;
-    expect(el.textContent).to.include('Space');
-    await expect(el).to.be.accessible();
-    });
-    });
+import { expect } from "chai";
+
+// defineCustomElement("v-space", VSpace);
+
+// describe("v-sapce", () => {
+//   it("renders space correctly", async () => {
+//     const { shadowRoot } = await render("v-space", "<span>space></span>");
+//     console.log("dddd", shadowRoot?.innerHTML);
+//   });
+// });
+
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+describe("add", () => {
+  it("result", () => {
+    expect(add(1, 2)).toBe(3);
+  });
+});

@@ -35,16 +35,17 @@ export class VSpace extends HTMLElement {
   }
   get size() {
     let size = this.getAttribute(SIZE);
+    const base = 12;
     if (size) {
       if (size === "small") {
-        size = "12px";
+        size = base + "px";
       } else if (size === "middle") {
-        size = "24px";
+        size = base * 2 + "px";
       } else if (size === "large") {
-        size = "36px";
+        size = base * 3 + "px";
       }
     } else {
-      size = "12px";
+      size = base + "px";
     }
     return size;
   }

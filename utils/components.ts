@@ -10,7 +10,8 @@ export function defineCustomElement(
   constructor: CustomElementConstructor
 ) {
   if (!customElements.get(elementName)) {
-    customElements.define(elementName, constructor);
+    // eslint-disable-next-line no-restricted-globals
+    window.customElements.define(elementName, constructor);
   }
 }
 

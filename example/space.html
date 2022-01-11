@@ -37,7 +37,7 @@
     <section>
       <h3>base</h3>
       <section>
-        <v-space>
+        <v-space class="dd">
           <v-button>default</v-button>
           <v-button>default</v-button>
           <v-button>default</v-button>
@@ -72,7 +72,12 @@
           <v-button>default</v-button>
           <v-button>default</v-button>
         </v-space>
-        <v-space inline>
+        <v-space inline="true">
+          <span>sapce</span>
+          <v-button>default</v-button>
+          <v-button>default</v-button>
+        </v-space>
+        <v-space inline="false">
           <span>sapce</span>
           <v-button>default</v-button>
           <v-button>default</v-button>
@@ -217,6 +222,13 @@
   </section>
   <script src="../dist/space.esm.js" type="module"></script>
   <script src="../dist/button.esm.js" type="module"></script>
+  <script>
+    const ele = document.querySelector('.dd')
+    const btn = ele.querySelector('v-button')
+    console.log('--', getComputedStyle(ele).display)
+    // console.log('ele', ele.innerHTML)
+    console.log('btn', btn.getAttribute('style'))
+  </script>
 </body>
 
 </html>
