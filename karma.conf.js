@@ -2,6 +2,7 @@
 // Generated on Tue Jan 11 2022 13:23:21 GMT+0800 (中国标准时间)
 // eslint-disable-next-line no-restricted-globals
 const path = require('path')
+
 // eslint-disable-next-line no-restricted-globals
 module.exports = function (config) {
   config.set({
@@ -12,6 +13,7 @@ module.exports = function (config) {
     ],
     preprocessors: {
       "packages/**/*.ts": ['webpack'],
+      "utils/**/*.ts": ['webpack'],
     },
     mime: {
       'text/x-typescript': ['ts', 'tsx']
@@ -24,7 +26,7 @@ module.exports = function (config) {
       'karma-jasmine',
       'karma-spec-reporter',
       'karma-coverage-istanbul-reporter',
-      'karma-edge-launcher',
+      '@chiragrupani/karma-chromium-edge-launcher',
       'karma-chrome-launcher',
       'karma-firefox-launcher',
     ],
@@ -35,7 +37,7 @@ module.exports = function (config) {
     webpack: {
       mode: 'development',
       output: {
-        filename: '[name].js'
+        filename: '[name].js',
       },
       devtool: 'inline-source-map',
       module: {
@@ -59,7 +61,11 @@ module.exports = function (config) {
         ]
       },
       resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.json']
+        extensions: ['.tsx', '.ts', '.js', '.json'],
+        alias: {
+          "utils": path.join(__dirname, './utils'),
+          "styles": path.join(__dirname, './styles'),
+        }
       }
     },
     coverageIstanbulReporter: process.env.CI
@@ -83,7 +89,7 @@ module.exports = function (config) {
       dir: 'coverage/'
     },
 
-    browsers: ["Chrome"],
+    browsers: ["Chrome", 'Edge', 'Firefox'],
     singleRun: !!process.env.CI,
   })
 }
