@@ -25,7 +25,11 @@
         "inlineSources": true,
         "rootDir": "./",
         "baseUrl": "",
-        "incremental": true
+        "incremental": true,
+        "paths": {
+            "@vanilla-ui/type": ["packages/*/type"],
+            "@vanilla-ui/": ["packages/"],
+        }
     },
 
     "exclude": [

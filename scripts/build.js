@@ -1,7 +1,8 @@
 const fs = require('fs-extra')
 const path = require('path')
 const chalk = require('chalk')
-const execa = require('execa')
+
+const execa = import('execa')
 
 const { targets: allTargets } = require('./utils')
 const { isConstructorDeclaration } = require('typescript')
