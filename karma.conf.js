@@ -91,5 +91,6 @@ module.exports = function (config) {
 
     browsers: ["Chrome", 'Edge', 'Firefox'],
     singleRun: !!process.env.CI,
+    concurrency: Infinity
   })
 }

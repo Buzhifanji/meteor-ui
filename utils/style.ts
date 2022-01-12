@@ -23,3 +23,7 @@ export function getNumberAndUnit(value: string) {
   const pureNumberRegex = /^(\d|\.)+$/;
   return pureNumberRegex.test(value) ? value + "px" : value;
 }
+
+export function getStylePropertyValue(ele: Element, key: string) {
+  return getComputedStyle(ele).getPropertyValue(key);
+}

@@ -72,7 +72,10 @@ export class VSpace extends HTMLElement {
       this.setAttribute(WARP, "");
     }
   }
-  attributeChangedCallback(name: string) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (oldValue === newValue) {
+      return;
+    }
     switch (name) {
       case INLINE:
       case VERTICAL:
