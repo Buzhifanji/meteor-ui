@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "ESNext", // 打包模块类型ESNext
+        "module": "ES6", // 打包模块类型ESNext
         "declaration": false, // 默认不要声明文件 
         "noImplicitAny": false, // 支持类型不标注可以默认any
         "removeComments": true, // 删除注释
@@ -13,6 +13,7 @@
             "ESNext",
             "DOM"
         ],
+        "types": ["node", "jasmine"],
         "allowSyntheticDefaultImports": true, // 允许没有导出的模块中导入
         "experimentalDecorators": true, // 装饰器语法
         "forceConsistentCasingInFileNames": true, // 强制区分大小写
@@ -23,25 +24,12 @@
         "sourceMap": true,
         "inlineSources": true,
         "rootDir": "./",
-        "baseUrl": ".",
-        "incremental": true,
-        "paths": {
-            "@vanilla-ui/type": ["packages/*/type"],
-            "@vanilla-ui/": ["packages/"],
-        }
+        "baseUrl": "",
+        "incremental": true
     },
 
     "exclude": [
         "node_modules",
-        "**/__tests__",
         "scripts"
     ]
 }
-
-// "devDependencies": {
-//     "@typescript-eslint/parser": "^5.8.0",
-//     "eslint": "^8.5.0",
-//     "rollup": "^2.61.1",
-//     "rollup-plugin-typescript2": "^0.31.1",
-//     "typescript": "^4.5.4"
-//   }
