@@ -35,6 +35,11 @@ describe("web component v-sapce", () => {
       <span>2</span>
       <span>3</span>
     </v-space>
+    <v-space class="v-space-slot-align">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+    </v-space>
     `;
   });
 
@@ -187,5 +192,31 @@ describe("web component v-sapce", () => {
 
     space.removeAttribute("vertical");
     expect(getStylePropertyValue(space, "flex-direction")).toBe("row");
+  });
+
+  it("set align property", () => {
+    const space = Selector(".v-space-slot-align")!;
+
+    expect(space).not.toBeNull();
+    expect(getStylePropertyValue(space, "align-items")).toBe("stretch");
+    expect(getStylePropertyValue(space, "display")).toBe("flex");
+    expect(getStylePropertyValue(space, "justify-content")).toBe("flex-start");
+    expect(getStylePropertyValue(space, "flex-direction")).toBe("row");
+    expect(getStylePropertyValue(space, "flex-wrap")).toBe("wrap");
+
+    space.setAttribute("align", "baseline");
+    expect(getStylePropertyValue(space, "align-items")).toBe("baseline");
+
+    space.setAttribute("align", "stretch");
+    expect(getStylePropertyValue(space, "align-items")).toBe("stretch");
+
+    space.setAttribute("align", "center");
+    expect(getStylePropertyValue(space, "align-items")).toBe("center");
+
+    space.setAttribute("align", "flex-end");
+    expect(getStylePropertyValue(space, "align-items")).toBe("flex-end");
+
+    space.setAttribute("align", "flex-start");
+    expect(getStylePropertyValue(space, "align-items")).toBe("flex-start");
   });
 });
