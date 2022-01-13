@@ -6,7 +6,7 @@ export function renderGridTemplate(): HTMLTemplateElement {
         <style>
             :host {
                 display:grid;
-                grid-template-columns:repeat(24,1fr);
+                grid-template-columns:repeat(auto-fill ,1fr);
                 grid-gap: 0;
             }
         </style>
