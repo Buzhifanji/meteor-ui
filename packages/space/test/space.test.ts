@@ -25,6 +25,11 @@ describe("web component v-sapce", () => {
       <span>2</span>
       <span>3</span>
     </v-space>
+    <v-space class="v-space-slot-size">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+    </v-space>
     `;
   });
 
@@ -58,7 +63,7 @@ describe("web component v-sapce", () => {
     setTimeout(() => {
       expect(getStylePropertyValue(children[0], "margin-right")).toBe("12px");
       expect(getStylePropertyValue(children[1], "margin-right")).toBe("12px");
-      expect(getStylePropertyValue(children[2], "margin-right")).toBe("");
+      expect(getStylePropertyValue(children[2], "margin-right")).toBe("0px");
     }, 100);
   });
 
@@ -74,11 +79,12 @@ describe("web component v-sapce", () => {
 
     space.setAttribute("inline", "false");
     expect(getStylePropertyValue(space, "display")).toBe("flex");
-    expect(getStylePropertyValue(space, "flex-wrap")).toBe("wrap");
 
     space.setAttribute("inline", "true");
     expect(getStylePropertyValue(space, "display")).toBe("inline-flex");
-    expect(getStylePropertyValue(space, "flex-wrap")).toBe("wrap");
+
+    space.removeAttribute("inline");
+    expect(getStylePropertyValue(space, "display")).toBe("flex");
   });
 
   it("set justify property", () => {
@@ -117,6 +123,45 @@ describe("web component v-sapce", () => {
     expect(getStylePropertyValue(space, "justify-content")).toBe(
       "space-between"
     );
+    expect(getStylePropertyValue(space, "display")).toBe("flex");
+    expect(getStylePropertyValue(space, "flex-direction")).toBe("row");
+    expect(getStylePropertyValue(space, "align-items")).toBe("stretch");
+    expect(getStylePropertyValue(space, "flex-wrap")).toBe("wrap");
+  });
+
+  it("set size property", () => {
+    const space = Selector(".v-space-slot-size")!;
+    expect(space).not.toBeNull();
+
+    const spanLsit = SelectorAll("span", space);
+    expect(spanLsit[0]).not.toBeNull();
+    expect(spanLsit[1]).not.toBeNull();
+    expect(spanLsit[2]).not.toBeNull();
+
+    space.setAttribute("size", "small");
+    expect(getStylePropertyValue(spanLsit[0], "margin-right")).toBe("12px");
+    expect(getStylePropertyValue(spanLsit[1], "margin-right")).toBe("12px");
+    expect(getStylePropertyValue(spanLsit[2], "margin-right")).toBe("0px");
+
+    space.setAttribute("size", "middle");
+    expect(getStylePropertyValue(spanLsit[0], "margin-right")).toBe("24px");
+    expect(getStylePropertyValue(spanLsit[1], "margin-right")).toBe("24px");
+    expect(getStylePropertyValue(spanLsit[2], "margin-right")).toBe("0px");
+
+    space.setAttribute("size", "large");
+    expect(getStylePropertyValue(spanLsit[0], "margin-right")).toBe("36px");
+    expect(getStylePropertyValue(spanLsit[1], "margin-right")).toBe("36px");
+    expect(getStylePropertyValue(spanLsit[2], "margin-right")).toBe("0px");
+
+    space.setAttribute("size", "30");
+    space.setAttribute("size", "30");
+    space.setAttribute("size", "30");
+    expect(getStylePropertyValue(spanLsit[0], "margin-right")).toBe("30px");
+    expect(getStylePropertyValue(spanLsit[1], "margin-right")).toBe("30px");
+    expect(getStylePropertyValue(spanLsit[2], "margin-right")).toBe("0px");
+
+    space.setAttribute("justify", "flex-end");
+    expect(getStylePropertyValue(space, "justify-content")).toBe("flex-end");
     expect(getStylePropertyValue(space, "display")).toBe("flex");
     expect(getStylePropertyValue(space, "flex-direction")).toBe("row");
     expect(getStylePropertyValue(space, "align-items")).toBe("stretch");
