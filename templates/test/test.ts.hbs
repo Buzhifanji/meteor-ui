@@ -1,11 +1,15 @@
-import { elementUpdated, expect, fixture, html } from '@open-wc/testing';
+/* eslint-disable no-restricted-globals */
+import { defineCustomElement } from "utils";
+import { Selector, SelectorAll } from "utils/dom";
+import { getStylePropertyValue } from "utils/style";
 import { V{{properCase name}} } from '../src'
 
-describe('v-{{name}}', () => {
-it('loads default', async () => {
-const el = await fixture<V{{properCase name}}>(html` <v-{{name}}>{{properCase name}}</v-{{name}}> `);
-    expect(el).to.not.be.undefined;
-    expect(el.textContent).to.include('{{properCase name}}');
-    await expect(el).to.be.accessible();
-    });
-    });
+defineCustomElement("v-{{name}}", V{{properCase name}});
+
+describe("web component v-{{name}}", () => {
+    beforeEach(() => {
+    document.body.innerHTML = `
+        <v-{{name}} class="v-{{name}}"></v-{{name}}>
+    `
+    })
+})
