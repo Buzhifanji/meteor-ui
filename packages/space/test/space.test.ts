@@ -30,6 +30,11 @@ describe("web component v-sapce", () => {
       <span>2</span>
       <span>3</span>
     </v-space>
+    <v-space vertical class="v-space-slot-vertical">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+    </v-space>
     `;
   });
 
@@ -166,5 +171,21 @@ describe("web component v-sapce", () => {
     expect(getStylePropertyValue(space, "flex-direction")).toBe("row");
     expect(getStylePropertyValue(space, "align-items")).toBe("stretch");
     expect(getStylePropertyValue(space, "flex-wrap")).toBe("wrap");
+  });
+
+  it("set vertical property", () => {
+    const space = Selector(".v-space-slot-vertical")!;
+    expect(space).not.toBeNull();
+
+    expect(getStylePropertyValue(space, "flex-direction")).toBe("column");
+
+    space.setAttribute("vertical", "false");
+    expect(getStylePropertyValue(space, "flex-direction")).toBe("row");
+
+    space.setAttribute("vertical", "true");
+    expect(getStylePropertyValue(space, "flex-direction")).toBe("column");
+
+    space.removeAttribute("vertical");
+    expect(getStylePropertyValue(space, "flex-direction")).toBe("row");
   });
 });
