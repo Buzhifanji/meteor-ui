@@ -43,7 +43,7 @@ export class VSpace extends HTMLElement {
     return size;
   }
   get vertical() {
-    return this.getAttribute(VERTICAL) !== null;
+    return !isAttrFalse(this.getAttribute(VERTICAL));
   }
   get align() {
     return (this.getAttribute(ALIGN) as Align) || "stretch";
