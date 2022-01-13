@@ -1,8 +1,8 @@
 import { defineCustomElement } from "utils";
 import { isAttrFalse } from "utils/judgment";
 import { getNumberAndUnit } from "utils/style";
-import { Align, Justify, SapceHostStyle } from "./interface";
-import { getSpaceStyle, renderSpaceTemplate } from "./template";
+import { Align, Justify } from "./interface";
+import { renderSpaceTemplate } from "./template";
 
 const INLINE = "inline";
 const JUSTIFY = "justify";
@@ -59,11 +59,19 @@ export class VSpace extends HTMLElement {
 
     switch (name) {
       case INLINE:
+        this.updateInline();
+        break;
       case VERTICAL:
+        this.updateVertical();
+        break;
       case ALIGN:
+        this.updateAlign();
+        break;
       case JUSTIFY:
+        this.updateJustify();
+        break;
       case WARP:
-        this.updateStyle();
+        this.updateWrap();
         break;
       case SIZE:
         this.sizeUpdate();
@@ -98,24 +106,22 @@ export class VSpace extends HTMLElement {
     });
   }
   private updateInline() {
-    return this.inline ? "inline-flex" : "flex";
+    const value = this.inline ? "inline-flex" : "flex";
+    this.style.setProperty("display", value);
   }
   private updateVertical() {
-    return this.vertical ? "column" : "row";
+    const value = this.vertical ? "column" : "row";
+    this.style.setProperty("flex-direction", value);
+  }
+  private updateAlign() {
+    this.style.setProperty("align-items", this.align);
+  }
+  private updateJustify() {
+    this.style.setProperty("justify-content", this.justify);
   }
   private updateWrap() {
-    return this.wrap || this.vertical ? "nowrap" : "wrap";
-  }
-  private updateStyle() {
-    const result: SapceHostStyle = {
-      display: this.updateInline(),
-      justify: this.justify,
-      vertical: this.updateVertical(),
-      align: this.align,
-      wrap: this.updateWrap(),
-    };
-    const style = this.shadowRoot!.querySelector("style")!;
-    style.textContent = getSpaceStyle(result);
+    const value = this.wrap || this.vertical ? "nowrap" : "wrap";
+    this.style.setProperty("flex-wrap", value);
   }
 }
 defineCustomElement("v-space", VSpace);
