@@ -23,13 +23,6 @@ export class VSpace extends HTMLElement {
   get inline() {
     return !isAttrFalse(this.getAttribute(INLINE));
   }
-  set inline(value) {
-    if (isAttrFalse(value)) {
-      this.removeAttribute(INLINE);
-    } else {
-      this.setAttribute(INLINE, "");
-    }
-  }
   get justify() {
     return (this.getAttribute(JUSTIFY) as Justify) || "flex-start";
   }
@@ -52,26 +45,13 @@ export class VSpace extends HTMLElement {
   get vertical() {
     return this.getAttribute(VERTICAL) !== null;
   }
-  set vertical(value) {
-    if (isAttrFalse(value)) {
-      this.removeAttribute(VERTICAL);
-    } else {
-      this.setAttribute(VERTICAL, "");
-    }
-  }
   get align() {
     return (this.getAttribute(ALIGN) as Align) || "stretch";
   }
   get wrap() {
     return !isAttrFalse(this.getAttribute(WARP));
   }
-  set wrap(value) {
-    if (isAttrFalse(value)) {
-      this.removeAttribute(WARP);
-    } else {
-      this.setAttribute(WARP, "");
-    }
-  }
+
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) {
       return;
@@ -86,7 +66,7 @@ export class VSpace extends HTMLElement {
         this.updateStyle();
         break;
       case SIZE:
-        this.onSlotChange();
+        this.sizeUpdate();
         break;
     }
   }
@@ -98,19 +78,23 @@ export class VSpace extends HTMLElement {
   private onSlotChange() {
     const slot = this.shadowRoot!.querySelector("slot")!;
     slot.addEventListener("slotchange", () => {
-      const children = slot.assignedElements();
-      children.forEach((element, index) => {
-        if (index !== children.length - 1) {
-          const value = getNumberAndUnit(this.size);
-          // 是否垂直布局
-          const style = this.vertical
-            ? `margin-bottom: ${value}`
-            : `margin-right: ${value}`;
-          // 设置间距
-          // 注意：每个 element 需要标签包裹，不然间距不生效
-          element.setAttribute("style", style);
-        }
-      });
+      this.sizeUpdate();
+    });
+  }
+  private sizeUpdate() {
+    const slot = this.shadowRoot!.querySelector("slot")!;
+    const children = slot.assignedElements();
+    children.forEach((element, index) => {
+      if (index !== children.length - 1) {
+        const value = getNumberAndUnit(this.size);
+        // 是否垂直布局
+        const style = this.vertical
+          ? `margin-bottom: ${value}`
+          : `margin-right: ${value}`;
+        // 设置间距
+        // 注意：每个 element 需要标签包裹，不然间距不生效
+        element.setAttribute("style", style);
+      }
     });
   }
   private updateInline() {
