@@ -63,7 +63,7 @@ export class VSpace extends HTMLElement {
     return (this.getAttribute(ALIGN) as Align) || "stretch";
   }
   get wrap() {
-    return this.getAttribute(WARP) !== null;
+    return !isAttrFalse(this.getAttribute(WARP));
   }
   set wrap(value) {
     if (isAttrFalse(value)) {
@@ -76,6 +76,7 @@ export class VSpace extends HTMLElement {
     if (oldValue === newValue) {
       return;
     }
+
     switch (name) {
       case INLINE:
       case VERTICAL:
@@ -119,7 +120,7 @@ export class VSpace extends HTMLElement {
     return this.vertical ? "column" : "row";
   }
   private updateWrap() {
-    return !this.wrap || this.vertical ? "nowrap" : "wrap";
+    return this.wrap || this.vertical ? "nowrap" : "wrap";
   }
   private updateStyle() {
     const result: SapceHostStyle = {
