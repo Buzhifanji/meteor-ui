@@ -1,0 +1,36 @@
+{
+"name": "@vanilla-ui/v-text",
+"version": "1.0.0",
+"description": "@vanilla-ui/v-text",
+"main": "index.js",
+"module": "dist/v-text.esm.js",
+"types": "dist/v-text.d.ts",
+"files": [
+"index.js",
+"dist"
+],
+"buildOptions": {
+"name": "VanillaUiText",
+"compat": true,
+"formats": [
+"esm-bundler",
+"cjs"
+]
+},
+"repository": {
+"type": "git",
+"url": "git+https://github.com/Buzhifanji/vanilla-ui.git",
+"directory": "packages/text"
+},
+"keywords": [
+"vanilla-ui"
+],
+"author": "buzhifanji",
+"license": "MIT",
+"bugs": {
+"url": "https://github.com/Buzhifanji/vanilla-ui/issues"
+},
+"homepage": "https://github.com/Buzhifanji/vanilla-ui/blob/master/packages/text/REDEAM.md",
+"dependencies": {
+}
+}
