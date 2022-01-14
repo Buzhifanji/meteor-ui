@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { defineCustomElement } from "utils";
-import { Selector, SelectorAll } from "utils/dom";
+import { Selector } from "utils/dom";
 import { getStylePropertyValue } from "utils/style";
 import { VGrid } from "../src";
 

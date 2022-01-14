@@ -6,7 +6,7 @@ export function renderGridTemplate(): HTMLTemplateElement {
         <style>
             :host {
                 display:grid;
-                grid-template-columns:repeat(auto-fill ,1fr);
+                grid-template-columns:repeat(24 ,1fr);
                 grid-gap: 0;
             }
         </style>
@@ -19,13 +19,11 @@ export function renderGridItemTemplate(): HTMLTemplateElement {
   const template = getTemplate();
   template.innerHTML = `
         <style>
-            :host {
-                display:grid;
-                grid-template-columns:repeat(24,1fr);
-                grid-gap: 0;
+            .centent {
+                display:contents;
             }
         </style>
-        <slot></slot>
+        <div class="centent"><slot></slot></div>
     `;
   return template;
 }

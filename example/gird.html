@@ -21,7 +21,7 @@
       /* grid-auto-rows: 100px; */
       /* grid-template-rows: 1fr; */
       /* grid-template-columns: repeat(auto-fill, 200px); */
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
     }
 
     .box {
@@ -32,32 +32,37 @@
 
     .box1 {
       grid-column-start: 1;
-      grid-column-end: 4;
       grid-row-start: 1;
-      grid-row-end: 3;
+      grid-row-end: 4;
     }
   </style>
 </head>
 
 <body>
   <section>
-    <h1>grid</h1>
+    <h1>grid-1</h1>
     <v-grid class="wrapper" x-gap="12" y-gap="22" cols="3">
-      <div class=" box">One</div>
-      <div class="box">
-        <p>I have some more content in.</p>
-        <p>This makes me taller than 100 pixels.</p>
-        <p>This makes me taller than 100 pixels.</p>
-        <p>This makes me taller than 100 pixels.</p>
-        <p>This makes me taller than 100 pixels.</p>
-        <p>This makes me taller than 100 pixels.</p>
-        <p>This makes me taller than 100 pixels.</p>
-        <p>This makes me taller than 100 pixels.</p>
-        <p>This makes me taller than 100 pixels.</p>
-      </div>
-      <div class="box">Three</div>
-      <div class="box">Four</div>
-      <div class="box">Five</div>
+      <v-grid-item class="box" area="1/1/4/2">One</v-grid-item>
+      <v-grid-item class="box" area="1/3/3/4">
+        <p>kkkkkkkkkkkkkkkk</p>
+        <p>kkkkkkkkkkkkkkkk</p>
+        <p>kkkkkkkkkkkkkkkk</p>
+        <p>kkkkkkkkkkkkkkkk</p>
+      </v-grid-item>
+      <v-grid-item class="box" area="1/2/2/3">Three</v-grid-item>
+      <v-grid-item class="box" area="3/2/4/4">Four</v-grid-item>
+      <v-grid-item class="box">Five</v-grid-item>
+    </v-grid>
+  </section>
+  <section>
+    <h1>grid-2</h1>
+    <v-grid class="wrapper" x-gap="12" y-gap="4">
+      <v-grid-item class="box" span="12">One</v-grid-item>
+      <v-grid-item class="box" span="12">two</v-grid-item>
+      <v-grid-item class="box" span="8">Three</v-grid-item>
+      <v-grid-item class="box" span="16">Four</v-grid-item>
+      <v-grid-item class="box" span="16">Five</v-grid-item>
+      <v-grid-item class="box" span="8">Six</v-grid-item>
     </v-grid>
   </section>
 
