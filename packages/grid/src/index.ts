@@ -1,2 +1,2 @@
 export { VGrid } from "./grid";
-export { VGridItem } from "./gird-item";
+export { VGridItem } from "./grid-item";
