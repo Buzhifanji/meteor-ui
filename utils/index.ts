@@ -1,3 +1,2 @@
-export { defineCustomElement, getTemplate } from './components'
-export { getBascBackgroundColor, getStyleVarValue } from './style'
-export { isNull } from './judgment'
+export { defineCustomElement, getTemplate } from "./components";
+export { isNull } from "./judgment";
