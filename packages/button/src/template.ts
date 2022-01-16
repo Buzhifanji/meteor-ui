@@ -1,10 +1,30 @@
-import { getTemplate } from 'utils/components';
-import { themeVariableName } from '../../../styles/enums';
-import { getBascBackgroundColor, getStyleVarValue } from '../../../utils';
+import { getCssVariable } from "styles/cssVariable";
+import {
+  backgroundColor,
+  bezier,
+  borderRadius,
+  boxShadowColor,
+  dangerBackgroundColor,
+  dangerBoxShadowColor,
+  fontSize,
+  height,
+  infoBackgroundColor,
+  infoBoxShadowColor,
+  padding,
+  primaryBackgroundColor,
+  primaryBoxShadowColor,
+  successBackgroundColor,
+  successBoxShadowColor,
+  textColor,
+  warningBackgroundColor,
+  warningBoxShadowColor,
+  width,
+} from "styles/cssVariable/variable";
+import { getTemplate } from "utils/components";
 
 export function renderButtonTemplate(): HTMLTemplateElement {
-    const template = getTemplate();
-    template.innerHTML = `
+  const template = getTemplate();
+  template.innerHTML = `
         <style>
             :host{ 
                 position:relative; 
@@ -15,19 +35,19 @@ export function renderButtonTemplate(): HTMLTemplateElement {
                 justify-content: center;
                 cursor: pointer;
                 line-height: 1;
-                width: ${getStyleVarValue(themeVariableName.width)};
-                height: ${getStyleVarValue(themeVariableName.height)};
-                padding: ${getStyleVarValue(themeVariableName.padding)};
+                width: ${getCssVariable(width)};
+                height: ${getCssVariable(height)};
+                padding: ${getCssVariable(padding)};
                 border:1px solid var(--borderColor,rgba(0,0,0,.2)); 
-                font-size: ${getStyleVarValue(themeVariableName.fontSize)};
-                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.defaultBoxShadowColor)};
-                color: ${getStyleVarValue(themeVariableName.textColor)};
-                background-color: ${getStyleVarValue(themeVariableName.backgroundColor)};
-                border-radius: ${getStyleVarValue(themeVariableName.borderRadius)};
-                transition:color .3s ${getStyleVarValue(themeVariableName.bezier)},
-                            background-color .3s ${getStyleVarValue(themeVariableName.bezier)},
-                            opacity .3s ${getStyleVarValue(themeVariableName.bezier)},
-                            border-color .3s ${getStyleVarValue(themeVariableName.bezier)};
+                font-size: ${getCssVariable(fontSize)};
+                box-shadow: 0 2px 6px  ${getCssVariable(boxShadowColor)};
+                color: ${getCssVariable(textColor)};
+                background-color: ${getCssVariable(backgroundColor)};
+                border-radius: ${getCssVariable(borderRadius)};
+                transition:color .3s ${getCssVariable(bezier)},
+                            background-color .3s ${getCssVariable(bezier)},
+                            opacity .3s ${getCssVariable(bezier)},
+                            border-color .3s ${getCssVariable(bezier)};
             }
             :host([disabled]),
             :host([loading]){
@@ -53,34 +73,34 @@ export function renderButtonTemplate(): HTMLTemplateElement {
                 transform: translateY(-0.25px);
             }
             :host([type="danger"]) {
-                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.dangerBoxShadowColor)};
+                box-shadow: 0 2px 6px  ${getCssVariable(dangerBoxShadowColor)};
                 color: #fff;
-                border-color: ${getBascBackgroundColor(themeVariableName.dangerBackgroundColor)};
-                background-color: ${getBascBackgroundColor(themeVariableName.dangerBackgroundColor)};
+                border-color: ${getCssVariable(dangerBackgroundColor)};
+                background-color: ${getCssVariable(dangerBackgroundColor)};
             }
             :host([type="primary"]) {
                 color: #fff;
-                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.primaryBoxShadowColor)};
-                border-color: ${getBascBackgroundColor(themeVariableName.primaryBackgroundColor)};
-                background-color: ${getBascBackgroundColor(themeVariableName.primaryBackgroundColor)};
+                box-shadow: 0 2px 6px  ${getCssVariable(primaryBoxShadowColor)};
+                border-color: ${getCssVariable(primaryBackgroundColor)};
+                background-color: ${getCssVariable(primaryBackgroundColor)};
             }
             :host([type="info"]) {
                 color: #fff;
-                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.infoBoxShadowColor)};
-                border-color: ${getBascBackgroundColor(themeVariableName.infoBackgroundColor)};
-                background-color: ${getBascBackgroundColor(themeVariableName.infoBackgroundColor)};
+                box-shadow: 0 2px 6px  ${getCssVariable(infoBoxShadowColor)};
+                border-color: ${getCssVariable(infoBackgroundColor)};
+                background-color: ${getCssVariable(infoBackgroundColor)};
             }
             :host([type="warning"]) {
                 color: #fff;
-                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.warningBoxShadowColor)};
-                border-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
-                background-color: ${getBascBackgroundColor(themeVariableName.warningBackgroundColor)};
+                box-shadow: 0 2px 6px  ${getCssVariable(warningBoxShadowColor)};
+                border-color: ${getCssVariable(warningBackgroundColor)};
+                background-color: ${getCssVariable(warningBackgroundColor)};
             }
             :host([type="success"]) {
                 color: #fff;
-                box-shadow: 0 2px 6px  ${getBascBackgroundColor(themeVariableName.successBoxShadowColor)};
-                border-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
-                background-color: ${getBascBackgroundColor(themeVariableName.successBackgroundColor)};
+                box-shadow: 0 2px 6px  ${getCssVariable(successBoxShadowColor)};
+                border-color: ${getCssVariable(successBackgroundColor)};
+                background-color: ${getCssVariable(successBackgroundColor)};
             }
             :host([shape="circle"]) {
                 border-radius: 50%;
@@ -110,6 +130,6 @@ export function renderButtonTemplate(): HTMLTemplateElement {
         <button class="v-button" id="btn">
         </button>
         <slot></slot>
-    `
-    return template
-} 
+    `;
+  return template;
+}
