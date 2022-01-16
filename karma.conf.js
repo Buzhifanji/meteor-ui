@@ -36,9 +36,6 @@ module.exports = function (config) {
     },
     webpack: {
       mode: 'development',
-      output: {
-        filename: '[name].js',
-      },
       devtool: 'inline-source-map',
       module: {
         rules: [
@@ -54,8 +51,11 @@ module.exports = function (config) {
             include: [path.join(__dirname, 'packages')],
             enforce: 'post',
             use: {
-              loader: 'istanbul-instrumenter-loader',
-              options: { esModules: true }
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: ['istanbul']
+              }
             }
           }
         ]
