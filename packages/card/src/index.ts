@@ -1,0 +1,1 @@
+export { VCard } from './card'
