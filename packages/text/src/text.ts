@@ -15,6 +15,7 @@ export class VText extends HTMLElement {
   get color() {
     return this.getAttribute(COLOR);
   }
+  // 如果配置 line-clamp 属性，则不会处理换行
   get [ROW]() {
     return this.getAttribute(ROW);
   }
@@ -33,8 +34,6 @@ export class VText extends HTMLElement {
         break;
     }
   }
-  connectedCallback() {}
-  disconnectedCallback() {}
   private render() {
     this.attachShadow({ mode: "open" });
     const template = renderTextTemplate();

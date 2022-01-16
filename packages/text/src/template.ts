@@ -23,7 +23,6 @@ export function renderTextTemplate(): HTMLTemplateElement {
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
             word-break: break-all;
-            text-size-adjust: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
         }
