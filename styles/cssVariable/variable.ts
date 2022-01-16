@@ -3,6 +3,8 @@ export const fontWeight = { "--v-font-weight": 400 };
 export const padding = { "--v-pading": "0 1em" };
 export const borderRadius = { "--v-pading": "0.25em" };
 export const bezier = { "--v-bezier": "cubic-bezier(0.4, 0, 0.2, 1)x" }; // 定义三次贝塞尔曲线
+export const width = { "--v-width": "initial" };
+export const height = { "--v-height": "34px" };
 
 /**** ================== 背景颜色 ==================** */
 export const backgroundColor = { "--v-background-color": "#fff" };
