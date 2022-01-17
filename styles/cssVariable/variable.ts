@@ -5,6 +5,8 @@ export const borderRadius = { "--v-pading": "0.25em" };
 export const bezier = { "--v-bezier": "cubic-bezier(0.4, 0, 0.2, 1)x" }; // 定义三次贝塞尔曲线
 export const width = { "--v-width": "initial" };
 export const height = { "--v-height": "34px" };
+export const color = { "--v-color": "#e2e2eb" };
+export const dashedColor = { "--v-dashed-color": "#000" };
 
 /**** ================== 背景颜色 ==================** */
 export const backgroundColor = { "--v-background-color": "#fff" };
@@ -46,7 +48,7 @@ export const successBoxShadowColor = {
 };
 
 /**** ================== 文字颜色 ==================** */
-export const textColor = { "--v-text-color": "#333" };
+export const textColor = { "--v-text-color": "#2c3136" };
 export const textColorPressed = { "--v-text-color-pressed": "#5dcba6" };
 export const primaryTextColor = { "--v-primary-text-color": "#6777ef" };
 export const successTextColor = { "--v-success-text-color": "#63ed7a" };
