@@ -11,7 +11,9 @@ this.render()
 
 
 attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-
+  if(oldValue === newValue) {
+    return
+  }
 }
 connectedCallback() {
 
