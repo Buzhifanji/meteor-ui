@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "test": "karma start karma.conf.js",
     "plop": "plop"
   },
@@ -20,6 +22,10 @@
     "@types/node": "^17.0.5",
     "@types/webpack-env": "^1.13.9",
     "@typescript-eslint/parser": "^5.8.1",
+    "@vue/component-compiler-utils": "^3.3.0",
+    "@vuepress/plugin-back-to-top": "^2.0.0-beta.33",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.33",
+    "@vuepress/plugin-search": "^2.0.0-beta.33",
     "babel-loader": "^8.2.3",
     "babel-plugin-istanbul": "^6.1.1",
     "eslint": "^8.0.0",

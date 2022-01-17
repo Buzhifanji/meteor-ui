@@ -6,3 +6,5 @@ pnpm-lock.yaml
 dist
 out-tsc
 coverage
+.cache
+.temp
