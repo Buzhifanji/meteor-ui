@@ -19,3 +19,7 @@ export function getTemplate(): HTMLTemplateElement {
   // eslint-disable-next-line no-restricted-globals
   return document.createElement("template");
 }
+
+export function getElementLowerCaseTagName(element: Element) {
+  return element.tagName.toLowerCase();
+}
