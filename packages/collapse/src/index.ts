@@ -1,0 +1,1 @@
+export { VCollapse } from './collapse'
