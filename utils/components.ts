@@ -1,5 +1,3 @@
-import exp from "constants";
-
 /**
  *
  * @param elementName 自定义组件名

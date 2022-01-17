@@ -1,5 +1,4 @@
-import { defineCustomElement } from "utils";
-import { getElementLowerCaseTagName } from "utils/components";
+import { defineCustomElement, getElementLowerCaseTagName } from "utils";
 import { renderCollapseTemplate } from "./template";
 
 const ARROWPLACEMENT = "arrow-placement";

@@ -1,6 +1,4 @@
-import { defineCustomElement } from "utils";
-import { isAttrFalse } from "utils/judgment";
-import { getNumberAndUnit } from "utils/style";
+import { defineCustomElement, isAttrFalse, getNumberAndUnit } from "utils";
 import { Align, Justify } from "./interface";
 import { renderSpaceTemplate } from "./template";
 

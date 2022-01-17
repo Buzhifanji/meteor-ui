@@ -1,6 +1,5 @@
 import { renderButtonTemplate } from "./template";
-import { defineCustomElement, isNull } from "../../../utils/index";
-import { isAttrFalse } from "utils/judgment";
+import { defineCustomElement, isNull, isAttrFalse } from "utils";
 
 export class VButton extends HTMLElement {
   btn: Element | null = null;

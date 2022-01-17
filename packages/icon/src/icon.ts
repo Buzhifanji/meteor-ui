@@ -1,5 +1,4 @@
-import { defineCustomElement } from "utils";
-import { getNumberAndUnit } from "utils/style";
+import { defineCustomElement, getNumberAndUnit } from "utils";
 import { renderIconTemplate } from "./template";
 
 export class VIcon extends HTMLElement {
