@@ -1,7 +1,10 @@
 /* eslint-disable no-restricted-globals */
-import { defineCustomElement } from "utils";
-import { Selector, SelectorAll } from "utils/dom";
-import { getStylePropertyValue } from "utils";
+import {
+  defineCustomElement,
+  Selector,
+  SelectorAll,
+  getStylePropertyValue,
+} from "utils";
 import { VDivider } from "../src";
 
 defineCustomElement("v-divider", VDivider);
@@ -12,4 +15,5 @@ describe("web component v-divider", () => {
         <v-divider class="v-divider"></v-divider>
     `;
   });
+  it("should ", () => {});
 });
