@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vanilla-ui</title>
+</head>
+
+<body>
+  <section>
+    <h1>collapse-1</h1>
+    <v-collapse>
+      <v-collapse-panel title="1" name="1" slot="panel" expanded="true">1111111111111</v-collapse-panel>
+      <v-collapse-panel title="2" name="2" slot="panel" expanded="false">2222222222222</v-collapse-panel>
+      <v-collapse-panel title="3" name="3" slot="panel">3333333333333</v-collapse-panel>
+      <v-collapse-panel name="4" slot="panel">
+        <div slot="title">title</div>
+        <div>title</div>
+      </v-collapse-panel>
+    </v-collapse>
+    <h1>collapse-2</h1>
+    <v-collapse>
+      <v-collapse-panel title="1" name="1" slot="panel" expanded="true">1111111111111</v-collapse-panel>
+      <v-collapse-panel title="2" name="2" slot="panel" expanded="false">2222222222222</v-collapse-panel>
+      <v-collapse-panel title="3" name="3" slot="panel">3333333333333</v-collapse-panel>
+      <v-collapse-panel name="4" slot="panel">
+        <div slot="title">title</div>
+        <div>title</div>
+      </v-collapse-panel>
+    </v-collapse>
+  </section>
+  <script src="../dist/collapse.esm.js" type="module"></script>
+</body>
+
+</html>

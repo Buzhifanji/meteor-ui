@@ -1,1 +1,2 @@
-export { VCollapse } from './collapse'
+export { VCollapse } from "./collapse";
+export { VCollapsePanel } from "./collapse-panel";
