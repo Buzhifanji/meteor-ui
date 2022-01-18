@@ -7,6 +7,7 @@ import {
   textColor,
 } from "styles/cssVariable/variable";
 import { getTemplate } from "utils/components";
+import { DASHED, PALCE, VERTICAL } from "./attributesName";
 
 export function renderDividerTemplate(): HTMLTemplateElement {
   const template = getTemplate();
@@ -23,17 +24,17 @@ export function renderDividerTemplate(): HTMLTemplateElement {
               bezier
             )}, background-color .3s ${getCssVariable(bezier)};
         }
-        :host(:not([place])){
+        :host(:not([${PALCE}])){
             align-items: center;
             position: relative;
             width: 100%;
             height: 1px;
         }
-        :host([place]) {
+        :host([${PALCE}]) {
             background-color: ${getCssVariable(backgroundColor)};
         }
-        :host([place])::before,
-        :host([place])::after {
+        :host([${PALCE}])::before,
+        :host([${PALCE}])::after {
             position: relative;
             top: 50%;
             border-top: 1px solid transparent;
@@ -42,39 +43,39 @@ export function renderDividerTemplate(): HTMLTemplateElement {
             transform: translateY(50%);
             content: "";
         }
-        :host([place][dashed])::before,
-        :host([place][dashed])::after {
+        :host([${PALCE}][${DASHED}])::before,
+        :host([${PALCE}][${DASHED}])::after {
             border-top-style: dashed;
             border-width: 1px 0 0;
             border-top-color: ${getCssVariable(dashedColor)};
         }
-        :host([place="center"])::before {
+        :host([${PALCE}="center"])::before {
             width: 50%;
         }
-        :host([place="center"])::after {
+        :host([${PALCE}="center"])::after {
             width: 50%;
         }
-        :host([place="left"])::before {
+        :host([${PALCE}="left"])::before {
             width: 5%;
         }
-        :host([place="left"])::after {
+        :host([${PALCE}="left"])::after {
             width: 95%;
         }
-        :host([place="right"])::before {
+        :host([${PALCE}="right"])::before {
             width: 95%;
         }
-        :host([place="right"])::after {
+        :host([${PALCE}="right"])::after {
             width: 5%;
         }
       
-        :host([dashed]:not([place])) {
+        :host([${DASHED}]:not([${PALCE}])) {
             border-style: dashed;
             border-width: 1px 0 0;
         }
-        :host(:not(dashed))  {
+        :host(:not(${DASHED}))  {
             background-color: ${getCssVariable(color)};
         }
-        :host([vertical]) {
+        :host([${VERTICAL}]) {
             display: inline-flex;
             vertical-align: middle;
             top: -.06em;
@@ -82,7 +83,7 @@ export function renderDividerTemplate(): HTMLTemplateElement {
             width: 1px;
             margin: 0 1em;
         }
-        :host([vertical][dashed]) {
+        :host([${VERTICAL}][${DASHED}]) {
             border-width: 0 0 0 1px;
         }
         .v-divider-line-content {

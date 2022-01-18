@@ -1,9 +1,6 @@
 import { defineCustomElement, expectProperty } from "utils";
+import { DASHED, PALCE, VERTICAL } from "./attributesName";
 import { renderDividerTemplate } from "./template";
-
-const DASHED = "dashed";
-const PALCE = "place";
-const VERTICAL = "vertical";
 
 export class VDivider extends HTMLElement {
   static get observedAttributes() {
