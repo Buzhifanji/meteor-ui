@@ -23,13 +23,7 @@ export class VDivider extends HTMLElement {
   }
 
   get place() {
-    const value = this.getAttribute(PALCE) || "";
-    if (value) {
-      const placeEnums = ["left", "center", "right"];
-      return expectProperty(placeEnums, value, "v-divider");
-    } else {
-      return null;
-    }
+    return this.getAttribute(PALCE) || "";
   }
   set place(value: any) {
     if (value) {
