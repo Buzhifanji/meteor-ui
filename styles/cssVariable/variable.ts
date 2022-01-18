@@ -7,6 +7,7 @@ export const width = { "--v-width": "initial" };
 export const height = { "--v-height": "34px" };
 export const color = { "--v-color": "#e2e2eb" };
 export const dashedColor = { "--v-dashed-color": "#000" };
+export const dividerColor = { "--v-divider-color": "#efeff5" };
 
 /**** ================== 背景颜色 ==================** */
 export const backgroundColor = { "--v-background-color": "#fff" };

@@ -1,36 +1,35 @@
 {
-"name": "@vanilla-ui/v-collapse",
-"version": "1.0.0",
-"description": "@vanilla-ui/v-collapse",
-"main": "index.js",
-"module": "dist/v-collapse.esm.js",
-"types": "dist/v-collapse.d.ts",
-"files": [
-"index.js",
-"dist"
-],
-"buildOptions": {
-"name": "VanillaUiCollapse",
-"compat": true,
-"formats": [
-"esm-bundler",
-"cjs"
-]
-},
-"repository": {
-"type": "git",
-"url": "git+https://github.com/Buzhifanji/vanilla-ui.git",
-"directory": "packages/collapse"
-},
-"keywords": [
-"vanilla-ui"
-],
-"author": "buzhifanji",
-"license": "MIT",
-"bugs": {
-"url": "https://github.com/Buzhifanji/vanilla-ui/issues"
-},
-"homepage": "https://github.com/Buzhifanji/vanilla-ui/blob/master/packages/collapse/REDEAM.md",
-"dependencies": {
-}
+  "name": "@vanilla-ui/v-collapse",
+  "version": "1.0.0",
+  "description": "@vanilla-ui/v-collapse",
+  "main": "index.js",
+  "module": "dist/v-collapse.esm.js",
+  "types": "dist/v-collapse.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "VanillaUiCollapse",
+    "compat": true,
+    "formats": [
+      "esm-bundler",
+      "cjs"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Buzhifanji/vanilla-ui.git",
+    "directory": "packages/collapse"
+  },
+  "keywords": [
+    "vanilla-ui"
+  ],
+  "author": "buzhifanji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Buzhifanji/vanilla-ui/issues"
+  },
+  "homepage": "https://github.com/Buzhifanji/vanilla-ui/blob/master/packages/collapse/REDEAM.md",
+  "dependencies": {}
 }

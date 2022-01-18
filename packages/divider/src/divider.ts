@@ -17,9 +17,7 @@ export class VDivider extends HTMLElement {
     return this.hasAttribute(DASHED);
   }
   set dashed(value: any) {
-    Boolean(value)
-      ? this.setAttribute(DASHED, "")
-      : this.removeAttribute(DASHED);
+    this.chaneAttribute(value, DASHED);
   }
 
   get place() {
@@ -41,14 +39,15 @@ export class VDivider extends HTMLElement {
     return this.hasAttribute(VERTICAL);
   }
   set vertical(value: any) {
-    Boolean(value)
-      ? this.setAttribute(VERTICAL, "")
-      : this.removeAttribute(VERTICAL);
+    this.chaneAttribute(value, VERTICAL);
   }
   private render() {
     this.attachShadow({ mode: "open" });
     const template = renderDividerTemplate();
     this.shadowRoot!.appendChild(template.content.cloneNode(true));
+  }
+  private chaneAttribute(value: any, name: string) {
+    Boolean(value) ? this.setAttribute(name, "") : this.removeAttribute(name);
   }
 }
 defineCustomElement("v-divider", VDivider);
