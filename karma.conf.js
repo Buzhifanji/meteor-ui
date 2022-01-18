@@ -65,6 +65,7 @@ module.exports = function (config) {
         alias: {
           "utils": path.join(__dirname, './utils'),
           "styles": path.join(__dirname, './styles'),
+          "aria": path.join(__dirname, './aria'),
         }
       }
     },
