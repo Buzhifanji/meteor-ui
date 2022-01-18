@@ -13,6 +13,7 @@ export class VCollapsePanel extends HTMLElement {
   constructor() {
     super();
     id += 1;
+    this.onClick = this.onClick.bind(this);
     this.render(id);
   }
   get title() {
@@ -75,6 +76,7 @@ export class VCollapsePanel extends HTMLElement {
     this.panelTitle = this.shadowRoot!.querySelector(
       ".v-collaspe-panel-title"
     ) as HTMLElement;
+    this.panelTitle.addEventListener("click", this.onClick);
   }
   private updateTitle() {
     if (this.panelTitle) {
@@ -100,6 +102,12 @@ export class VCollapsePanel extends HTMLElement {
   }
   private chaneAttribute(value: any, name: string) {
     Boolean(value) ? this.setAttribute(name, "") : this.removeAttribute(name);
+  }
+  private onClick() {
+    if (!this.disabled) {
+      const value = !this.expanded;
+      this.chaneAttribute(value, EXPANDED);
+    }
   }
   private updateName() {}
 }
