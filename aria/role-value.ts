@@ -14,6 +14,10 @@ export const roleAlertdialog = "alertdialog";
  *应用
  */
 export const roleApplication = "application";
+/**
+ *按钮
+ */
+export const roleButton = "button";
 
 /**
  *复选框
