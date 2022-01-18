@@ -1,16 +1,12 @@
 import { ariaDisabled, ariaExpanded } from "aria/aria-statue";
 import { defineCustomElement } from "utils";
+import { DISABLED, EXPANDED, NAME, PANELNAME, TITLE } from "./attributesName";
 import { renderCollapsePanelTemplate } from "./template";
 
 let id = 0; // for make sure aria-controls id
 
-const TITLE = "title";
-const NAME = "name";
-const EXPANDED = "expanded";
-const DISABLED = "disabled";
-
 export class VCollapsePanel extends HTMLElement {
-  private panelTitle: Element | null = null;
+  private panelTitle: HTMLElement | null = null;
   static get observedAttributes() {
     return [TITLE, NAME, EXPANDED, DISABLED];
   }
@@ -76,11 +72,22 @@ export class VCollapsePanel extends HTMLElement {
     this.attachShadow({ mode: "open" });
     const template = renderCollapsePanelTemplate(id);
     this.shadowRoot!.appendChild(template.content.cloneNode(true));
-    this.panelTitle = this.shadowRoot!.querySelector(".v-collaspe-panel-title");
+    this.panelTitle = this.shadowRoot!.querySelector(
+      ".v-collaspe-panel-title"
+    ) as HTMLElement;
   }
   private updateTitle() {
     if (this.panelTitle) {
-      this.panelTitle.textContent = this.title;
+      const slotTitle = this.panelTitle.querySelector("slot[name=title]")!;
+      if (slotTitle.children.length === 0) {
+        const span = this.panelTitle.querySelector("span");
+        if (!span) {
+          // eslint-disable-next-line no-restricted-globals
+          const ele = document.createElement("span");
+          ele.innerText = this.title;
+          this.panelTitle.append(ele);
+        }
+      }
     }
   }
   private updateDisabled() {
@@ -97,4 +104,4 @@ export class VCollapsePanel extends HTMLElement {
   private updateName() {}
 }
 
-defineCustomElement("v-collapse-panel", VCollapsePanel);
+defineCustomElement(PANELNAME, VCollapsePanel);

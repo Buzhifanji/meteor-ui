@@ -1,9 +1,11 @@
-import { defineCustomElement, getElementLowerCaseTagName } from "utils";
+import {
+  defineCustomElement,
+  expectProperty,
+  getElementLowerCaseTagName,
+} from "utils";
+import { ACCORDION, ARROWPLACEMENT, PANELNAME } from "./attributesName";
 import { renderCollapseTemplate } from "./template";
 
-const ARROWPLACEMENT = "arrow-placement"; // 箭头方向
-const ACCORDION = "accordion"; //
-const PANELNAME = "v-collapse-panel"; // 子元素名 折叠面板
 export class VCollapse extends HTMLElement {
   private panelSlot: Element | null = null;
   static get observedAttributes() {
@@ -11,9 +13,24 @@ export class VCollapse extends HTMLElement {
   }
   constructor() {
     super();
-    // this.linkPanels = this.linkPanels.bind(this);
     this.render();
     this.onPanelSlot();
+  }
+
+  get [ARROWPLACEMENT]() {
+    return this.getAttribute(ARROWPLACEMENT);
+  }
+  set [ARROWPLACEMENT](value: any) {
+    if (value) {
+      const placeEnums = ["left", "right"];
+      const result = expectProperty(placeEnums, value, "v-collapse");
+      if (result) {
+        this.setAttribute(ARROWPLACEMENT, result);
+      } else {
+        // 输入不符合枚举值
+        this.removeAttribute(ARROWPLACEMENT);
+      }
+    }
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -22,9 +39,6 @@ export class VCollapse extends HTMLElement {
     }
   }
   connectedCallback() {
-    // if (!this.hasAttribute("role")) {
-    //   this.setAttribute("role", "collapse");
-    // }
     customElements.whenDefined(PANELNAME).then(() => this.linkPanels());
   }
   disconnectedCallback() {}
