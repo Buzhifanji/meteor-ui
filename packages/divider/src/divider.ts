@@ -14,10 +14,16 @@ export class VDivider extends HTMLElement {
     this.render();
   }
   get dashed() {
-    return !isAttrFalse(this.getAttribute(DASHED));
+    return this.hasAttribute(DASHED);
   }
+  set dashed(value: any) {
+    Boolean(value)
+      ? this.setAttribute(DASHED, "")
+      : this.removeAttribute(DASHED);
+  }
+
   get place() {
-    const value = this.getAttribute("place");
+    const value = this.getAttribute("place") || "";
     if (value) {
       const placeEnums = ["left", "center", "right"];
       return expectProperty(placeEnums, value, "v-divider");
@@ -25,8 +31,24 @@ export class VDivider extends HTMLElement {
       return null;
     }
   }
+  set place(value: any) {
+    if (value) {
+      const placeEnums = ["left", "center", "right"];
+      const result = expectProperty(placeEnums, value, "v-divider");
+      if (result) {
+        this.setAttribute(VERTICAL, result);
+      } else {
+        this.removeAttribute(VERTICAL);
+      }
+    }
+  }
   get vertical() {
-    return !isAttrFalse(this.getAttribute(VERTICAL));
+    return this.hasAttribute(VERTICAL);
+  }
+  set vertical(value: any) {
+    Boolean(value)
+      ? this.setAttribute(VERTICAL, "")
+      : this.removeAttribute(VERTICAL);
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) {
