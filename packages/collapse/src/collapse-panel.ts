@@ -85,11 +85,11 @@ export class VCollapsePanel extends HTMLElement {
   }
   private updateDisabled() {
     const value = this.disabled ? true : false;
-    this.setAttribute(ariaDisabled, value.toString());
+    this.panelTitle?.setAttribute(ariaDisabled, value.toString());
   }
   private updateExpanded() {
     const value = this.expanded ? true : false;
-    this.setAttribute(ariaExpanded, value.toString());
+    this.panelTitle?.setAttribute(ariaExpanded, value.toString());
   }
   private chaneAttribute(value: any, name: string) {
     Boolean(value) ? this.setAttribute(name, "") : this.removeAttribute(name);
