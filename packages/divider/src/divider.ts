@@ -1,4 +1,4 @@
-import { defineCustomElement, expectProperty, isAttrFalse } from "utils";
+import { defineCustomElement, expectProperty } from "utils";
 import { renderDividerTemplate } from "./template";
 
 const DASHED = "dashed";
@@ -23,7 +23,7 @@ export class VDivider extends HTMLElement {
   }
 
   get place() {
-    const value = this.getAttribute("place") || "";
+    const value = this.getAttribute(PALCE) || "";
     if (value) {
       const placeEnums = ["left", "center", "right"];
       return expectProperty(placeEnums, value, "v-divider");
@@ -36,9 +36,10 @@ export class VDivider extends HTMLElement {
       const placeEnums = ["left", "center", "right"];
       const result = expectProperty(placeEnums, value, "v-divider");
       if (result) {
-        this.setAttribute(VERTICAL, result);
+        this.setAttribute(PALCE, result);
       } else {
-        this.removeAttribute(VERTICAL);
+        // 输入不符合枚举值，设置为"center"
+        this.setAttribute(PALCE, "center");
       }
     }
   }
@@ -50,27 +51,10 @@ export class VDivider extends HTMLElement {
       ? this.setAttribute(VERTICAL, "")
       : this.removeAttribute(VERTICAL);
   }
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (oldValue === newValue) {
-      return;
-    }
-    switch (name) {
-      case PALCE:
-        this.updatePlace();
-        break;
-    }
-  }
-  connectedCallback() {}
-  disconnectedCallback() {}
   private render() {
     this.attachShadow({ mode: "open" });
     const template = renderDividerTemplate();
     this.shadowRoot!.appendChild(template.content.cloneNode(true));
-  }
-  private updatePlace() {
-    const value = this.place;
-    if (value) {
-    }
   }
 }
 defineCustomElement("v-divider", VDivider);
