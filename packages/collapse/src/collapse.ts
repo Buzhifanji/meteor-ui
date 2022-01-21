@@ -41,7 +41,9 @@ export class VCollapse extends HTMLElement {
   connectedCallback() {
     customElements.whenDefined(PANELNAME).then(() => this.linkPanels());
   }
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    this.removeEventListener("slotchange", this.linkPanels);
+  }
   private render() {
     this.attachShadow({ mode: "open" });
     const template = renderCollapseTemplate();
@@ -59,6 +61,14 @@ export class VCollapse extends HTMLElement {
           `collapse #${panel.id} is not a` + `sibling of a <v-collapse-panel>`
         );
         return;
+      } else {
+        // 给子元素 添加箭头方法属性
+        const arrowPlace = this[ARROWPLACEMENT];
+        if (arrowPlace) {
+          panel.setAttribute(ARROWPLACEMENT, arrowPlace);
+        } else {
+          panel.removeAttribute(ARROWPLACEMENT);
+        }
       }
       if (index === 0) {
         panel.style.marginTop = "0px";

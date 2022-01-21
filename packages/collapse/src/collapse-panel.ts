@@ -1,28 +1,40 @@
 import { ariaDisabled, ariaExpanded } from "aria/aria-statue";
+import {
+  getKeyframes,
+  setCollapseKeyframes,
+  setExpandeKeyframes,
+} from "styles/animation";
 import { defineCustomElement } from "utils";
-import { DISABLED, EXPANDED, NAME, PANELNAME, TITLE } from "./attributesName";
+import {
+  ARROWPLACEMENT,
+  COLLAPSE,
+  DISABLED,
+  EXPANDED,
+  NAME,
+  PANELNAME,
+} from "./attributesName";
 import { renderCollapsePanelTemplate } from "./template";
 
 let id = 0; // for make sure aria-controls id
 
 export class VCollapsePanel extends HTMLElement {
   private panelTitle: HTMLElement | null = null;
+  private panelContent: HTMLElement | null = null;
   static get observedAttributes() {
-    return [TITLE, NAME, EXPANDED, DISABLED];
+    return [NAME, EXPANDED, DISABLED, ARROWPLACEMENT];
   }
   constructor() {
     super();
     id += 1;
-    this.onClick = this.onClick.bind(this);
+    this.clickTitle = this.clickTitle.bind(this);
     this.render(id);
   }
-  get title() {
-    return this.getAttribute(TITLE) || "";
+
+  get [ARROWPLACEMENT]() {
+    return this.getAttribute(ARROWPLACEMENT) || "";
   }
-  set title(value: any) {
-    if (value) {
-      this.updateTitle();
-    }
+  set [ARROWPLACEMENT](value: any) {
+    this.chaneAttribute(value, ARROWPLACEMENT);
   }
 
   get name() {
@@ -50,9 +62,6 @@ export class VCollapsePanel extends HTMLElement {
       return;
     }
     switch (name) {
-      case TITLE:
-        this.updateTitle();
-        break;
       case DISABLED:
         this.updateDisabled();
         break;
@@ -68,29 +77,21 @@ export class VCollapsePanel extends HTMLElement {
     if (!this.hasAttribute(ariaExpanded)) {
       this.updateExpanded();
     }
+
+    // 第一次 加载的时候确保折叠面板是否显示
+    const className = this.expanded ? "expened-once" : "collapse-once";
+    this.panelContent!.className = `v-collaspe-panel-content ${className}`;
+  }
+  disconnectedCallback() {
+    this.removeEventListener("click", this.clickTitle);
   }
   private render(id: number) {
     this.attachShadow({ mode: "open" });
     const template = renderCollapsePanelTemplate(id);
     this.shadowRoot!.appendChild(template.content.cloneNode(true));
-    this.panelTitle = this.shadowRoot!.querySelector(
-      ".v-collaspe-panel-title"
-    ) as HTMLElement;
-    this.panelTitle.addEventListener("click", this.onClick);
-  }
-  private updateTitle() {
-    if (this.panelTitle) {
-      const slotTitle = this.panelTitle.querySelector("slot[name=title]")!;
-      if (slotTitle.children.length === 0) {
-        const span = this.panelTitle.querySelector("span");
-        if (!span) {
-          // eslint-disable-next-line no-restricted-globals
-          const ele = document.createElement("span");
-          ele.innerText = this.title;
-          this.panelTitle.append(ele);
-        }
-      }
-    }
+
+    this.getPanelTitleAndContentDom();
+    this.panelTitelAndContentAddEvent();
   }
   private updateDisabled() {
     const value = this.disabled ? true : false;
@@ -103,13 +104,47 @@ export class VCollapsePanel extends HTMLElement {
   private chaneAttribute(value: any, name: string) {
     Boolean(value) ? this.setAttribute(name, "") : this.removeAttribute(name);
   }
-  private onClick() {
+
+  private clickTitle() {
     if (!this.disabled) {
       const value = !this.expanded;
+      const el = this.panelContent!;
+      const setKeyframes = (name: string, keyframes: string) => {
+        const index = getKeyframes(this.shadowRoot!, name);
+        const styleSheet = this.shadowRoot!.styleSheets[0];
+        const len = styleSheet.cssRules.length - 1;
+        if (index !== -1) {
+          styleSheet.deleteRule(index);
+        }
+        styleSheet.insertRule(keyframes, len);
+      };
       this.chaneAttribute(value, EXPANDED);
+      if (value) {
+        // 展开
+        el.className = `v-collaspe-panel-content ${EXPANDED}`;
+        const height = el.scrollHeight;
+        const keyframes = setCollapseKeyframes(height, EXPANDED);
+        setKeyframes(EXPANDED, keyframes);
+      } else {
+        // 折叠
+        el.className = `v-collaspe-panel-content ${COLLAPSE}`;
+        const height = el.scrollHeight;
+        const keyframes = setExpandeKeyframes(height, COLLAPSE);
+        setKeyframes(COLLAPSE, keyframes);
+      }
     }
   }
-  private updateName() {}
+  private getPanelTitleAndContentDom() {
+    this.panelTitle = this.shadowRoot!.querySelector(
+      ".v-collaspe-panel-title"
+    ) as HTMLElement;
+    this.panelContent = this.shadowRoot!.querySelector(
+      ".v-collaspe-panel-content"
+    )! as HTMLElement;
+  }
+  private panelTitelAndContentAddEvent() {
+    this.panelTitle!.addEventListener("click", this.clickTitle);
+  }
 }
 
 defineCustomElement(PANELNAME, VCollapsePanel);
