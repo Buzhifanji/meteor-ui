@@ -23,6 +23,7 @@
     "@types/webpack-env": "^1.13.9",
     "@typescript-eslint/parser": "^5.8.1",
     "@vue/component-compiler-utils": "^3.3.0",
+    "@vuepress/bundler-vite": "^2.0.0-beta.33",
     "@vuepress/plugin-back-to-top": "^2.0.0-beta.33",
     "@vuepress/plugin-register-components": "^2.0.0-beta.33",
     "@vuepress/plugin-search": "^2.0.0-beta.33",
