@@ -51,8 +51,10 @@ export function setExpandeKeyframes(height: number, name: string) {
     }
     100% {
         height: 0;
-        display: none;
         opacity: 0;
+        margin: 0;
+        padding: 0;
+        display: none;
     }
   }
   `;

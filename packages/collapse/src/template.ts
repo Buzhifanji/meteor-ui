@@ -33,11 +33,11 @@ export function renderCollapsePanelTemplate(id: number): HTMLTemplateElement {
             display: block;
             font-size: ${getCssVariable(fontSize)};
             color: ${getCssVariable(textColor)};
-            padding: 16px 0 0 0;
-            margin-top: 16px;
+            padding: 16px 0 0;
             border-top: 1px solid ${getCssVariable(dividerColor)};
         }
-        :host([${DISABLED}]) {
+        :host([${DISABLED}]), 
+        :host([${DISABLED}]) .v-collaspe-panel-title {
           cursor:not-allowed;
         }
 
@@ -64,14 +64,13 @@ export function renderCollapsePanelTemplate(id: number): HTMLTemplateElement {
         .v-collaspe-panel-content {
           width:100%;
           height:100%;
-          margin-top: 16px;
-          // padding-bottom: 16px;
+          margin-bottom: 16px;
           display: block;
         }
         .v-collaspe-panel-title {
           display: flex;
           cursor: pointer;
-          margin-bottom: 16px;
+          padding-bottom: 16px;
           transition:box-shadow 0.2s ${getCssVariable(bezier)};
         }
     </style>

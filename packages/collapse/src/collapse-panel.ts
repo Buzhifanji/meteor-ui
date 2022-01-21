@@ -27,7 +27,11 @@ export class VCollapsePanel extends HTMLElement {
     super();
     id += 1;
     this.clickTitle = this.clickTitle.bind(this);
+    this.updateAanimationClassName = this.updateAanimationClassName.bind(this);
     this.render(id);
+
+    this.getPanelTitleAndContentDom();
+    this.panelTitelAndContentAddEvent();
   }
 
   get [ARROWPLACEMENT]() {
@@ -79,19 +83,16 @@ export class VCollapsePanel extends HTMLElement {
     }
 
     // 第一次 加载的时候确保折叠面板是否显示
-    const className = this.expanded ? "expened-once" : "collapse-once";
-    this.panelContent!.className = `v-collaspe-panel-content ${className}`;
+    this.updateClassName(this.expanded);
   }
   disconnectedCallback() {
     this.removeEventListener("click", this.clickTitle);
+    this.removeEventListener("animationend", this.updateAanimationClassName);
   }
   private render(id: number) {
     this.attachShadow({ mode: "open" });
     const template = renderCollapsePanelTemplate(id);
     this.shadowRoot!.appendChild(template.content.cloneNode(true));
-
-    this.getPanelTitleAndContentDom();
-    this.panelTitelAndContentAddEvent();
   }
   private updateDisabled() {
     const value = this.disabled ? true : false;
@@ -109,6 +110,7 @@ export class VCollapsePanel extends HTMLElement {
     if (!this.disabled) {
       const value = !this.expanded;
       const el = this.panelContent!;
+
       const setKeyframes = (name: string, keyframes: string) => {
         const index = getKeyframes(this.shadowRoot!, name);
         const styleSheet = this.shadowRoot!.styleSheets[0];
@@ -118,7 +120,9 @@ export class VCollapsePanel extends HTMLElement {
         }
         styleSheet.insertRule(keyframes, len);
       };
+
       this.chaneAttribute(value, EXPANDED);
+
       if (value) {
         // 展开
         el.className = `v-collaspe-panel-content ${EXPANDED}`;
@@ -144,6 +148,18 @@ export class VCollapsePanel extends HTMLElement {
   }
   private panelTitelAndContentAddEvent() {
     this.panelTitle!.addEventListener("click", this.clickTitle);
+    this.panelContent!.addEventListener(
+      "animationend",
+      this.updateAanimationClassName
+    );
+  }
+  private updateAanimationClassName(event: AnimationEvent) {
+    const bool = event.animationName === EXPANDED;
+    this.updateClassName(bool);
+  }
+  private updateClassName(value: boolean) {
+    const className = value ? "expened-once" : "collapse-once";
+    this.panelContent!.className = `v-collaspe-panel-content ${className}`;
   }
 }
 
