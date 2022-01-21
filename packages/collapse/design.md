@@ -2,7 +2,7 @@
 
 ## collapse 
 
-### arrow-placement(箭头位置)
+### arrow-placement(箭头位置)(**剔除**)
 
 - right
 - left

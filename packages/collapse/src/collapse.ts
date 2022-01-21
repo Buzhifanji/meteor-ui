@@ -1,15 +1,11 @@
-import {
-  defineCustomElement,
-  expectProperty,
-  getElementLowerCaseTagName,
-} from "utils";
-import { ACCORDION, ARROWPLACEMENT, PANELNAME } from "./attributesName";
+import { defineCustomElement, getElementLowerCaseTagName } from "utils";
+import { ACCORDION, EXPANDED, PANELNAME } from "./attributesName";
 import { renderCollapseTemplate } from "./template";
 
 export class VCollapse extends HTMLElement {
   private panelSlot: Element | null = null;
   static get observedAttributes() {
-    return [ARROWPLACEMENT, ACCORDION];
+    return [ACCORDION];
   }
   constructor() {
     super();
@@ -17,21 +13,29 @@ export class VCollapse extends HTMLElement {
     this.onPanelSlot();
   }
 
-  get [ARROWPLACEMENT]() {
-    return this.getAttribute(ARROWPLACEMENT);
+  get accordion() {
+    return this.hasAttribute(ACCORDION);
   }
-  set [ARROWPLACEMENT](value: any) {
-    if (value) {
-      const placeEnums = ["left", "right"];
-      const result = expectProperty(placeEnums, value, "v-collapse");
-      if (result) {
-        this.setAttribute(ARROWPLACEMENT, result);
-      } else {
-        // 输入不符合枚举值
-        this.removeAttribute(ARROWPLACEMENT);
-      }
-    }
+  set accordion(value: any) {
+    Boolean(value)
+      ? this.setAttribute(ACCORDION, "")
+      : this.removeAttribute(ACCORDION);
   }
+  // get [ARROWPLACEMENT]() {
+  //   return this.getAttribute(ARROWPLACEMENT);
+  // }
+  // set [ARROWPLACEMENT](value: any) {
+  //   if (value) {
+  //     const placeEnums = ["left", "right"];
+  //     const result = expectProperty(placeEnums, value, "v-collapse");
+  //     if (result) {
+  //       this.setAttribute(ARROWPLACEMENT, result);
+  //     } else {
+  //       // 输入不符合枚举值
+  //       this.removeAttribute(ARROWPLACEMENT);
+  //     }
+  //   }
+  // }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) {
@@ -55,6 +59,7 @@ export class VCollapse extends HTMLElement {
   }
   private linkPanels() {
     const panels = Array.from(this.children) as HTMLElement[];
+    let accordionFlag = false;
     panels.forEach((panel, index: number) => {
       if (getElementLowerCaseTagName(panel) !== PANELNAME) {
         console.error(
@@ -62,12 +67,15 @@ export class VCollapse extends HTMLElement {
         );
         return;
       } else {
-        // 给子元素 添加箭头方法属性
-        const arrowPlace = this[ARROWPLACEMENT];
-        if (arrowPlace) {
-          panel.setAttribute(ARROWPLACEMENT, arrowPlace);
-        } else {
-          panel.removeAttribute(ARROWPLACEMENT);
+        // 处理只展开一个的情况
+        if (this.accordion) {
+          if (panel.hasAttribute(EXPANDED)) {
+            if (accordionFlag) {
+              panel.removeAttribute(EXPANDED);
+            } else {
+              accordionFlag = true;
+            }
+          }
         }
       }
       if (index === 0) {
@@ -75,9 +83,6 @@ export class VCollapse extends HTMLElement {
         panel.style.borderTop = "0";
       }
     });
-
-    // 打开的折叠面板
-    // const opendCollapse = panels.filter(panel => panel.open)
   }
 }
 defineCustomElement("v-collapse", VCollapse);

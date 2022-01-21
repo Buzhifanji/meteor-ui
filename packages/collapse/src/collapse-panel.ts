@@ -4,8 +4,9 @@ import {
   setCollapseKeyframes,
   setExpandeKeyframes,
 } from "styles/animation";
-import { defineCustomElement } from "utils";
+import { defineCustomElement, getElementLowerCaseTagName } from "utils";
 import {
+  ACCORDION,
   ARROWPLACEMENT,
   COLLAPSE,
   DISABLED,
@@ -71,6 +72,7 @@ export class VCollapsePanel extends HTMLElement {
         break;
       case EXPANDED:
         this.updateExpanded();
+        this.updateClassName(this.expanded);
         break;
     }
   }
@@ -135,6 +137,18 @@ export class VCollapsePanel extends HTMLElement {
         const height = el.scrollHeight;
         const keyframes = setExpandeKeyframes(height, COLLAPSE);
         setKeyframes(COLLAPSE, keyframes);
+      }
+
+      // 只有一个展开的情况
+      const parentElement = this.parentElement!;
+      if (parentElement.hasAttribute(ACCORDION)) {
+        Array.from(parentElement.children).forEach((item) => {
+          if (getElementLowerCaseTagName(item) === PANELNAME && item !== this) {
+            if (item.hasAttribute(EXPANDED)) {
+              item.removeAttribute(EXPANDED);
+            }
+          }
+        });
       }
     }
   }

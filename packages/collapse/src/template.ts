@@ -56,7 +56,7 @@ export function renderCollapsePanelTemplate(id: number): HTMLTemplateElement {
           animation-fill-mode: forwards;
         }
         .v-collaspe-panel-content.expened-once {
-          display：block;
+          display: block;
         }
         .v-collaspe-panel-content.collapse-once {
           display: none;
