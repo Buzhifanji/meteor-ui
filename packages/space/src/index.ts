@@ -1,1 +1,0 @@
-export { VSpace } from './space'

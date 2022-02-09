@@ -1,1 +1,0 @@
-export { VCard } from './card'

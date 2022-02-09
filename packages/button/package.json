@@ -1,37 +1,12 @@
 {
-    "name": "@vanilla-ui/v-button",
-    "version": "1.0.0",
-    "description": "@vanilla-ui/v-button",
-    "main": "index.js",
-    "module": "dist/v-button.esm.js",
-    "types": "dist/v-button.d.ts",
-    "files": [
-        "index.js",
-        "dist"
-    ],
-    "buildOptions": {
-        "name": "VanillaUiButton",
-        "compat": true,
-        "formats": [
-            "esm-bundler",
-            "cjs"
-        ]
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Buzhifanji/vanilla-ui.git",
-        "directory": "packages/button"
-    },
-    "keywords": [
-        "vanilla-ui"
-    ],
-    "author": "buzhifanji",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Buzhifanji/vanilla-ui/issues"
-    },
-    "homepage": "https://github.com/Buzhifanji/vanilla-ui/blob/master/packages/button/REDEAM.md",
-    "dependencies": {
-
-    }
+  "name": "@one-ui/one-button",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

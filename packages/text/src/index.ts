@@ -1,1 +1,0 @@
-export { VText } from './text'

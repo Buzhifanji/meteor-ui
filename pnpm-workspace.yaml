@@ -1,3 +1,2 @@
-packages: 
-  - 'packages/**' # 组件库代码
-  - docs
+packages:
+  - "packages/**"
