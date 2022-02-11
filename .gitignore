@@ -9,6 +9,7 @@
 
 # production
 /dist
+/out-lib
 
 # misc
 .DS_Store
