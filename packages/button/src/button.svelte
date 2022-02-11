@@ -1,46 +1,72 @@
 <svelte:options tag="one-button" />
 
 <script lang="ts">
-  import { roleButton } from 'utils/aria/role-value';
-  import { updateStyleAttribute } from 'utils/custom-component/style';
+  import { roleButton } from '@one-ui/one-aria';
+  import {
+    mainfontSize,
+    height,
+    width,
+    fontFamily,
+    buttonBackgroundColor,
+    buttonBorderColor,
+    buttonHoverBackgroundColor,
+    buttonActiveBackgroundColor,
+    buttonHoverBorderColor,
+    buttonActiveBorderColor,
+    updateStyleAttribute,
+  } from '@one-ui/one-utils';
+  import { onMount, afterUpdate, beforeUpdate } from 'svelte';
+
+  const cssVar = [
+    height,
+    width,
+    mainfontSize,
+    fontFamily,
+    buttonBackgroundColor,
+    buttonBorderColor,
+    buttonHoverBackgroundColor,
+    buttonHoverBorderColor,
+    buttonActiveBackgroundColor,
+    buttonActiveBorderColor,
+  ];
+
+  // initCssVaraible(cssVar);
 
   export let color: string | null = null;
+  export let type: string | null = null;
   $: {
-    const { color } = $$props;
+    const { color, type } = $$props;
     updateStyleAttribute('color', color);
+    if (type) {
+      console.log('type', type);
+      updateStyleAttribute('--one-button-background-color', '#82d3f8');
+    }
+    // updateStyleAttribute('--one-height', height);
   }
 </script>
 
-<button role={roleButton} />
-<slot />
+<div>
+  <button role={roleButton} style="--one-height: 40px;" />
+  <slot />
+</div>
 
 <style>
   :host {
-    font-family: var(
-      --one-family,
-      'Helvetica Neue',
-      Helvetica,
-      'PingFang SC',
-      'Hiragino Sans GB',
-      'Microsoft YaHei',
-      '微软雅黑',
-      Arial,
-      sans-serif
-    );
+    font-family: var(--one-font-family);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
     cursor: pointer;
     line-height: 1;
-    width: var(--one-width, initial);
-    height: var(--one-height, 34px);
+    width: var(--one-width);
+    height: var(--one-height);
     padding: var(--one-padding, 0 1em);
-    border: 1px solid var(--one-border-color, rgba(0, 0, 0, 0.2));
-    font-size: var(--one-font-size, 14px);
+    border: 1px solid var(--one-button-border-color);
+    font-size: var(--one-font-size);
     box-shadow: 0 2px 6px var(--one-box-shadow, #e1e5e8);
     color: var(--one-text-color, #2c3136);
-    background-color: var(--one-background-color, #fff);
+    background-color: var(--one-button-background-color);
     border-radius: var(--one-border-radius, 00.25em);
     transition: color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       background-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),

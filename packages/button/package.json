@@ -3,10 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.35",
+    "svelte": "^3.46.2",
+    "svelte-check": "^2.3.0",
+    "svelte-jester": "^2.3.1",
+    "svelte-loader": "^3.1.2",
+    "svelte-preprocess": "^4.10.2",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@one-ui/one-aria": "workspace:^0.0.1",
+    "@one-ui/one-utils": "workspace:^0.0.1"
+  }
 }

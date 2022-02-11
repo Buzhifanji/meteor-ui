@@ -1,6 +1,6 @@
 <script lang="ts">
   import '../packages/button/index';
-  let color: any = null;
+  let color: any = 'red';
   let testName = 0;
   function changeColor() {
     color = color ? null : 'red';
@@ -10,6 +10,7 @@
 <main>
   <h1>One UI</h1>
   <my-counter />
+  <button on:click={changeColor}>chagne</button>
   <one-button attrType="submit" {color} {testName}>default</one-button>
   <one-button type="primary">primary</one-button>
   <one-button type="info">info</one-button>
