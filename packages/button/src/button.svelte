@@ -3,70 +3,108 @@
 <script lang="ts">
   import { roleButton } from '@one-ui/one-aria';
   import {
-    mainfontSize,
-    height,
-    width,
-    fontFamily,
+    buttonActiveBackgroundColor,
+    buttonActiveBorderColor,
     buttonBackgroundColor,
     buttonBorderColor,
+    buttonBoxShadow,
+    buttonColor,
     buttonHoverBackgroundColor,
-    buttonActiveBackgroundColor,
     buttonHoverBorderColor,
-    buttonActiveBorderColor,
+    getKey,
     updateStyleAttribute,
   } from '@one-ui/one-utils';
-  import { onMount, afterUpdate, beforeUpdate } from 'svelte';
-
-  const cssVar = [
-    height,
-    width,
-    mainfontSize,
-    fontFamily,
-    buttonBackgroundColor,
-    buttonBorderColor,
-    buttonHoverBackgroundColor,
-    buttonHoverBorderColor,
-    buttonActiveBackgroundColor,
-    buttonActiveBorderColor,
-  ];
-
-  // initCssVaraible(cssVar);
 
   export let color: string | null = null;
   export let type: string | null = null;
-  $: {
-    const { color, type } = $$props;
-    updateStyleAttribute('color', color);
+
+  let cssVarStyles = `
+  ${buttonColor};
+  ${buttonBackgroundColor};
+  ${buttonBorderColor};
+  ${buttonBoxShadow};
+  ${buttonHoverBackgroundColor};
+  ${buttonHoverBorderColor};
+  ${buttonActiveBackgroundColor};
+  ${buttonActiveBorderColor};`;
+
+  function updateType(type: string) {
     if (type) {
-      console.log('type', type);
-      updateStyleAttribute('--one-button-background-color', '#82d3f8');
+      const fn = (
+        color: string,
+        shadow: string,
+        bg: string,
+        border: string,
+      ) => {
+        return `
+      ${getKey(buttonColor)}: ${color};
+      ${getKey(buttonBoxShadow)}:0 2px 6px ${shadow} ;
+      ${getKey(buttonBackgroundColor)}: ${bg};
+      ${getKey(buttonBorderColor)}: ${border}`;
+      };
+      switch (type) {
+        case 'primary':
+          return fn('#fff', '#acb5f6', '#6777ef', '#6777ef');
+        case 'danger':
+          return fn('#fff', '#fd9b96', '#e91e63', '#e91e63');
+        case 'info':
+          return fn('#fff', '#82d3f8', '#2196f3', '#2196f3');
+        case 'warning':
+          return fn('#fff', '#ffc473', '#ffc107', '#ffc107');
+        case 'success':
+          return fn('#fff', '#a8f5b4', '#63ed7a', '#63ed7a');
+      }
+    } else {
+      return cssVarStyles;
     }
-    // updateStyleAttribute('--one-height', height);
+  }
+  $: style = updateType($$props.type);
+
+  $: {
+    const { color } = $$props;
+    updateStyleAttribute('color', color);
   }
 </script>
 
-<div>
-  <button role={roleButton} style="--one-height: 40px;" />
+<div class="one-btn" {style}>
+  <button role={roleButton} />
   <slot />
 </div>
 
 <style>
   :host {
-    font-family: var(--one-font-family);
+    font-family: var(
+      --one-font-family,
+      'Helvetica Neue',
+      Helvetica,
+      'PingFang SC',
+      'Hiragino Sans GB',
+      'Microsoft YaHei',
+      '微软雅黑',
+      Arial,
+      sans-serif
+    );
     display: inline-flex;
+    width: var(--one-width, initial);
+    height: var(--one-height, 34px);
+  }
+  .one-btn {
+    display: inherit;
+    width: inherit;
+    height: inherit;
     align-items: center;
     justify-content: center;
     position: relative;
     cursor: pointer;
+    user-select: none;
     line-height: 1;
-    width: var(--one-width);
-    height: var(--one-height);
     padding: var(--one-padding, 0 1em);
     border: 1px solid var(--one-button-border-color);
-    font-size: var(--one-font-size);
-    box-shadow: 0 2px 6px var(--one-box-shadow, #e1e5e8);
-    color: var(--one-text-color, #2c3136);
+    font-size: var(--one-font-size, 14px);
+    box-shadow: var(--one-button-box-shadow);
+    color: var(--one-button-color);
     background-color: var(--one-button-background-color);
+    border-color: var(--one-button-border-color);
     border-radius: var(--one-border-radius, 00.25em);
     transition: color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       background-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
@@ -81,7 +119,7 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     padding: 0;
     user-select: none;
     cursor: pointer;
@@ -109,36 +147,6 @@
   :host(:not([disabled]):hover) {
     border-color: transparent;
     transform: translateY(-0.25px);
-  }
-  :host([type='danger']) {
-    color: #fff;
-    box-shadow: 0 2px 6px var(--one-danger-box-shadow-color, #fd9b96);
-    border-color: var(--one-danger-background-color, #e91e63);
-    background-color: var(--one-danger-background-color, #e91e63);
-  }
-  :host([type='primary']) {
-    color: #fff;
-    box-shadow: 0 2px 6px var(--one-primary-box-shadow-color, #acb5f6);
-    border-color: var(--one-primary-background-color, #6777ef);
-    background-color: var(--one-primary-background-color, #6777ef);
-  }
-  :host([type='info']) {
-    color: #fff;
-    box-shadow: 0 2px 6px var(--one-info-box-shadow-color, #82d3f8);
-    border-color: var(--one-info-background-color, #2196f3);
-    background-color: var(--one-info-background-color, #2196f3);
-  }
-  :host([type='warning']) {
-    color: #fff;
-    box-shadow: 0 2px 6px var(--one-warning-box-shadow-color, #ffc473);
-    border-color: var(--one-warning-background-color, #ffc107);
-    background-color: var(--one-warning-background-color, #ffc107);
-  }
-  :host([type='success']) {
-    color: #fff;
-    box-shadow: 0 2px 6px var(--one-success-box-shadow-color, #a8f5b4);
-    border-color: var(--one-success-background-color, #63ed7a);
-    background-color: var(--one-success-background-color, #63ed7a);
   }
 
   :host([ghost]) {

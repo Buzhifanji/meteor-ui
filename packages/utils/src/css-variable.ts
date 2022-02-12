@@ -22,7 +22,7 @@ export const dividerColor = '--one-divider-color: #efeff5';
 /**** ================== 按钮 ==================** */
 export const buttonBackgroundColor = '--one-button-background-color: #fff';
 export const buttonColor = '--one-button-color: #2c3136';
-export const buttonBorderColor = '--one-button-border-color: #fff';
+export const buttonBorderColor = '--one-button-border-color: #d9d9d9';
 export const buttonBoxShadow =
   '--one-button-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06)';
 export const buttonHoverBackgroundColor =

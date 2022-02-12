@@ -11,7 +11,7 @@
   <h1>One UI</h1>
   <my-counter />
   <button on:click={changeColor}>chagne</button>
-  <one-button attrType="submit" {color} {testName}>default</one-button>
+  <one-button attrType="submit">default</one-button>
   <one-button type="primary">primary</one-button>
   <one-button type="info">info</one-button>
   <one-button type="warning">warning</one-button>
