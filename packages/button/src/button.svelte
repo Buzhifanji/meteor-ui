@@ -4,16 +4,15 @@
   import { roleButton } from '@one-ui/one-aria';
   import { updateStyleAttribute } from '@one-ui/one-utils';
 
-  export let color: string | null = null;
-  export let type: string | null = null;
-  export let ghost: boolean | null = null;
-  export let disabled: boolean | null = false;
-  export let loading: string | null = null;
+  export let color: string | null = null; // 自定义颜色
+  export let type: string | null = null; // 类型default、primary、info、success、warning 和 danger。
+  export let ghost: boolean | null = null; // 是否透明背景
+  export let disabled: boolean | null = false; // 是否禁用
+  export let loading: string | null = null; // 是否loading
+  export let dashed: string | null = null; // 是否设置虚线
 
   $: {
-    const { color, disabled, ghost } = $$props;
-    console.log('disabled', disabled);
-    console.log('ghost', ghost);
+    const { color } = $$props;
     updateStyleAttribute('color', color);
   }
 </script>
@@ -26,6 +25,7 @@
   {loading}
   {ghost}
   {disabled}
+  {dashed}
 >
   <slot />
 </button>
@@ -126,27 +126,29 @@
   .one-btn[ghost] {
     background-color: var(--one-button-color, #fff);
   }
-  .one-btn[ghost][type='danger'] {
+  .one-btn[ghost][type='danger'],
+  .one-btn[dashed][type='danger'] {
     color: var(--one-button-background-color, #e91e63);
   }
-  .one-btn[ghost][type='primary'] {
+  .one-btn[ghost][type='primary'],
+  .one-btn[dashed][type='primary'] {
     color: var(--one-button-background-color, #6777ef);
   }
-  .one-btn[ghost][type='info'] {
+  .one-btn[ghost][type='info'],
+  .one-btn[dashed][type='info'] {
     color: var(--one-button-background-color, #2196f3);
   }
-  .one-btn[ghost][type='warning'] {
+  .one-btn[ghost][type='warning'],
+  .one-btn[dashed][type='warning'] {
     color: var(--one-button-background-color, #ffc107);
   }
-  .one-btn[ghost][type='success'] {
+  .one-btn[ghost][type='success'],
+  .one-btn[dashed][type='success'] {
     color: var(--one-button-background-color, #63ed7a);
   }
 
-  :host([dashed]) {
+  .one-btn[dashed] {
     border-style: dashed;
-    background-color: var(--one-background-color, #fff);
-  }
-  :host([dashed][type='primary']) {
-    color: var(--one-primary-background-color, #6777ef);
+    background-color: var(--one-button-color, #fff);
   }
 </style>
