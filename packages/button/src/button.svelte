@@ -2,9 +2,11 @@
 
 <script lang="ts">
   import { roleButton } from '@one-ui/one-aria';
+  import { ButtonSize, ButtonType } from './interface';
 
   export let color: string | null = null; // 自定义颜色
-  export let type: string | null = null; // 类型default、primary、info、success、warning 和 danger。
+  export let size: ButtonSize = 'medium'; // 自定义颜色
+  export let type: ButtonType | null = null; // 类型default、primary、info、success、warning 和 danger。
   export let ghost: boolean | null | undefined = undefined; // 是否透明背景
   export let disabled: boolean | null = false; // 是否禁用
   export let loading: string | null = null; // 是否loading
@@ -50,6 +52,7 @@
   {dashed}
   {style}
   {circle}
+  {size}
 >
   <slot />
 </button>
@@ -68,21 +71,21 @@
       sans-serif
     );
     width: var(--one-width, initial);
-    height: var(--one-height, 34px);
+    height: var(--one-height, initial);
     contain: layout style;
-    display: inline-flex;
+    display: inline-block;
+  }
+  slot {
+    display: contents;
   }
   .one-btn {
-    display: inherit;
+    display: inline-block;
     width: inherit;
     height: inherit;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     cursor: pointer;
     user-select: none;
     line-height: 1;
-    padding: var(--one-padding, 0 1em);
+    overflow: hidden;
     border: 1px solid var(--one-button-border-color, #d9d9d9);
     font-size: var(--one-font-size, 14px);
     box-shadow: var(--one-button-box-shadow, 0 2px 6px rgba(0, 0, 0, 0.06));
@@ -185,5 +188,22 @@
 
   .one-btn[circle] {
     border-radius: 3em;
+  }
+
+  .one-btn[size='mini'] {
+    padding: 0.2em 0.6em;
+    font-size: 12px;
+  }
+  .one-btn[size='small'] {
+    padding: 0.4em 0.8em;
+    font-size: 14px;
+  }
+  .one-btn[size='medium'] {
+    padding: 0.6em 1em;
+    font-size: 14px;
+  }
+  .one-btn[size='big'] {
+    padding: 1em 2em;
+    font-size: 1.2em;
   }
 </style>
