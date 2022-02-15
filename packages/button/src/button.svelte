@@ -2,63 +2,12 @@
 
 <script lang="ts">
   import { roleButton } from '@one-ui/one-aria';
-  import {
-    buttonActiveBackgroundColor,
-    buttonActiveBorderColor,
-    buttonBackgroundColor,
-    buttonBorderColor,
-    buttonBoxShadow,
-    buttonColor,
-    buttonHoverBackgroundColor,
-    buttonHoverBorderColor,
-    getKey,
-    updateStyleAttribute,
-  } from '@one-ui/one-utils';
+  import { updateStyleAttribute } from '@one-ui/one-utils';
 
   export let color: string | null = null;
   export let type: string | null = null;
-
-  let cssVarStyles = `
-  ${buttonColor};
-  ${buttonBackgroundColor};
-  ${buttonBorderColor};
-  ${buttonBoxShadow};
-  ${buttonHoverBackgroundColor};
-  ${buttonHoverBorderColor};
-  ${buttonActiveBackgroundColor};
-  ${buttonActiveBorderColor};`;
-
-  function updateType(type: string) {
-    if (type) {
-      const fn = (
-        color: string,
-        shadow: string,
-        bg: string,
-        border: string,
-      ) => {
-        return `
-      ${getKey(buttonColor)}: ${color};
-      ${getKey(buttonBoxShadow)}:0 2px 6px ${shadow} ;
-      ${getKey(buttonBackgroundColor)}: ${bg};
-      ${getKey(buttonBorderColor)}: ${border}`;
-      };
-      switch (type) {
-        case 'primary':
-          return fn('#fff', '#acb5f6', '#6777ef', '#6777ef');
-        case 'danger':
-          return fn('#fff', '#fd9b96', '#e91e63', '#e91e63');
-        case 'info':
-          return fn('#fff', '#82d3f8', '#2196f3', '#2196f3');
-        case 'warning':
-          return fn('#fff', '#ffc473', '#ffc107', '#ffc107');
-        case 'success':
-          return fn('#fff', '#a8f5b4', '#63ed7a', '#63ed7a');
-      }
-    } else {
-      return cssVarStyles;
-    }
-  }
-  $: style = updateType($$props.type);
+  export let ghost: string | null = null;
+  export let disabled: string | null = null;
 
   $: {
     const { color } = $$props;
@@ -66,7 +15,7 @@
   }
 </script>
 
-<div class="one-btn" {style}>
+<div class="one-btn" {type} {color} {ghost} {disabled}>
   <button role={roleButton} />
   <slot />
 </div>
@@ -99,17 +48,31 @@
     user-select: none;
     line-height: 1;
     padding: var(--one-padding, 0 1em);
-    border: 1px solid var(--one-button-border-color);
+    border: 1px solid var(--one-button-border-color, #d9d9d9);
     font-size: var(--one-font-size, 14px);
-    box-shadow: var(--one-button-box-shadow);
-    color: var(--one-button-color);
-    background-color: var(--one-button-background-color);
-    border-color: var(--one-button-border-color);
+    box-shadow: var(--one-button-box-shadow, 0 2px 6px rgba(0, 0, 0, 0.06));
+    color: var(--one-button-color, #2c3136);
+    background-color: var(--one-button-background-color, #fff);
+    border-color: var(--one-button-border-color, #d9d9d9);
     border-radius: var(--one-border-radius, 00.25em);
     transition: color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       background-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       opacity 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       border-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1));
+  }
+  .one-btn:not([disabled]):active,
+  .one-btn:not([disabled]):hover {
+    transform: translateY(0.06em);
+    /* box-shadow: none; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0 4px 12px;
+  }
+  .one-btn:not([disabled]):not([type]):active,
+  .one-btn:not([disabled]):not([type]):hover {
+    color: var(--one-button-color-pressed, #6777ef);
+    border-color: var(--one-button-border-color-pressed, #6777ef);
+  }
+  .one-btn:not([disabled]):hover {
+    opacity: 0.8;
   }
   button {
     background: none;
@@ -130,42 +93,55 @@
     cursor: not-allowed;
     opacity: 0.6;
   }
-  :host([disabled]:not([type])) {
-    background: rgba(0, 0, 0, 0.1);
+
+  .one-btn[type='primary'] {
+    box-shadow: var(--one-button-box-shadow, #acb5f6);
+    color: var(--one-button-color, #fff);
+    background-color: var(--one-button-background-color, #6777ef);
+    border-color: var(--one-button-border-color, #6777ef);
   }
-  :host(:not([disabled]):hover),
-  :host(:not([disabled]):focus) {
-    border-color: rgba(0, 0, 0, 0.25);
-    box-shadow: rgba(0, 0, 0, 0.25) 0 4px 12px;
+  .one-btn[type='danger'] {
+    box-shadow: var(--one-button-box-shadow, #fd9b96);
+    color: var(--one-button-color, #fff);
+    background-color: var(--one-button-background-color, #e91e63);
+    border-color: var(--one-button-border-color, #e91e63);
   }
-  :host(:not([disabled]):active) {
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    transform: translateY(0em);
+  .one-btn[type='info'] {
+    box-shadow: var(--one-button-box-shadow, #82d3f8);
+    color: var(--one-button-color, #fff);
+    background-color: var(--one-button-background-color, #2196f3);
+    border-color: var(--one-button-border-color, #2196f3);
+  }
+  .one-btn[type='warning'] {
+    box-shadow: var(--one-button-box-shadow, #ffc473);
+    color: var(--one-button-color, #fff);
+    background-color: var(--one-button-background-color, #ffc107);
+    border-color: var(--one-button-border-color, #ffc107);
+  }
+  .one-btn[type='success'] {
+    box-shadow: var(--one-button-box-shadow, #a8f5b4);
+    color: var(--one-button-color, #fff);
+    background-color: var(--one-button-background-color, #63ed7a);
+    border-color: var(--one-button-border-color, #63ed7a);
   }
 
-  :host(:not([disabled]):hover) {
-    border-color: transparent;
-    transform: translateY(-0.25px);
+  .one-btn[ghost] {
+    background-color: var(--one-button-color, #fff);
   }
-
-  :host([ghost]) {
-    background-color: var(--one-background-color, #fff);
+  .one-btn[ghost][type='danger'] {
+    color: var(--one-button-background-color, #e91e63);
   }
-  :host([ghost][type='danger']) {
-    color: var(--one-danger-background-color, #e91e63);
+  .one-btn[ghost][type='primary'] {
+    color: var(--one-button-background-color, #6777ef);
   }
-  :host([ghost][type='primary']) {
-    color: var(--one-primary-background-color, #6777ef);
+  .one-btn[ghost][type='info'] {
+    color: var(--one-button-background-color, #2196f3);
   }
-  :host([ghost][type='info']) {
-    color: var(--one-info-background-color, #2196f3);
+  .one-btn[ghost][type='warning'] {
+    color: var(--one-button-background-color, #ffc107);
   }
-  :host([ghost][type='warning']) {
-    color: var(--one-warning-background-color, #ffc107);
-  }
-  :host([ghost][type='success']) {
-    color: var(--one-success-background-color, #63ed7a);
+  .one-btn[ghost][type='success'] {
+    color: var(--one-button-background-color, #63ed7a);
   }
 
   :host([dashed]) {
