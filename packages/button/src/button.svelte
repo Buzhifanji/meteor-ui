@@ -6,19 +6,29 @@
 
   export let color: string | null = null;
   export let type: string | null = null;
-  export let ghost: string | null = null;
-  export let disabled: string | null = null;
+  export let ghost: boolean | null = null;
+  export let disabled: boolean | null = false;
+  export let loading: string | null = null;
 
   $: {
-    const { color } = $$props;
+    const { color, disabled, ghost } = $$props;
+    console.log('disabled', disabled);
+    console.log('ghost', ghost);
     updateStyleAttribute('color', color);
   }
 </script>
 
-<div class="one-btn" {type} {color} {ghost} {disabled}>
-  <button role={roleButton} />
+<button
+  class="one-btn"
+  role={roleButton}
+  {type}
+  {color}
+  {loading}
+  {ghost}
+  {disabled}
+>
   <slot />
-</div>
+</button>
 
 <style>
   :host {
@@ -33,9 +43,10 @@
       Arial,
       sans-serif
     );
-    display: inline-flex;
     width: var(--one-width, initial);
     height: var(--one-height, 34px);
+    contain: layout style;
+    display: inline-flex;
   }
   .one-btn {
     display: inherit;
@@ -60,6 +71,12 @@
       opacity 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       border-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1));
   }
+  .one-btn[disabled],
+  .one-btn[loading] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
   .one-btn:not([disabled]):active,
   .one-btn:not([disabled]):hover {
     transform: translateY(0.06em);
@@ -73,25 +90,6 @@
   }
   .one-btn:not([disabled]):hover {
     opacity: 0.8;
-  }
-  button {
-    background: none;
-    outline: 0;
-    border: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* height: 100%; */
-    padding: 0;
-    user-select: none;
-    cursor: pointer;
-  }
-  :host([disabled]),
-  :host([loading]) {
-    pointer-events: none;
-    cursor: not-allowed;
-    opacity: 0.6;
   }
 
   .one-btn[type='primary'] {
