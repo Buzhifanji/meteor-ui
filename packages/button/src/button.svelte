@@ -2,18 +2,39 @@
 
 <script lang="ts">
   import { roleButton } from '@one-ui/one-aria';
-  import { updateStyleAttribute } from '@one-ui/one-utils';
 
   export let color: string | null = null; // 自定义颜色
   export let type: string | null = null; // 类型default、primary、info、success、warning 和 danger。
-  export let ghost: boolean | null = null; // 是否透明背景
+  export let ghost: boolean | null | undefined = undefined; // 是否透明背景
   export let disabled: boolean | null = false; // 是否禁用
   export let loading: string | null = null; // 是否loading
   export let dashed: string | null = null; // 是否设置虚线
 
+  let style = '';
+
+  function setColor({ color, ghost }: SvelteAllProps) {
+    if (color) {
+      if (ghost !== undefined) {
+        style = `
+        --one-button-border-color: ${color};
+        --one-button-color: ${color}; 
+        --one-button-color-pressed: ${color};
+        --one-button-border-color-pressed: ${color}; 
+        `;
+      } else {
+        style = `
+        --one-button-border-color: ${color}; 
+        --one-button-color-pressed: #fff; 
+        --one-button-border-color-pressed: ${color}; 
+        --one-button-color: #fff;
+        --one-button-background-color: ${color}; 
+        `;
+      }
+    }
+  }
+
   $: {
-    const { color } = $$props;
-    updateStyleAttribute('color', color);
+    setColor($$props);
   }
 </script>
 
@@ -21,11 +42,12 @@
   class="one-btn"
   role={roleButton}
   {type}
-  {color}
   {loading}
   {ghost}
   {disabled}
+  {color}
   {dashed}
+  {style}
 >
   <slot />
 </button>
@@ -71,6 +93,9 @@
       opacity 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       border-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1));
   }
+
+  :host([disabled]),
+  :host([loading]),
   .one-btn[disabled],
   .one-btn[loading] {
     pointer-events: none;
@@ -124,31 +149,35 @@
   }
 
   .one-btn[ghost] {
-    background-color: var(--one-button-color, #fff);
+    background-color: var(--one-button-background-color, #fff);
   }
   .one-btn[ghost][type='danger'],
   .one-btn[dashed][type='danger'] {
-    color: var(--one-button-background-color, #e91e63);
+    color: var(--one-button-color, #e91e63);
   }
   .one-btn[ghost][type='primary'],
   .one-btn[dashed][type='primary'] {
-    color: var(--one-button-background-color, #6777ef);
+    color: var(--one-button-color, #6777ef);
   }
   .one-btn[ghost][type='info'],
   .one-btn[dashed][type='info'] {
-    color: var(--one-button-background-color, #2196f3);
+    color: var(--one-button-color, #2196f3);
   }
   .one-btn[ghost][type='warning'],
   .one-btn[dashed][type='warning'] {
-    color: var(--one-button-background-color, #ffc107);
+    color: var(--one-button-color, #ffc107);
   }
   .one-btn[ghost][type='success'],
   .one-btn[dashed][type='success'] {
-    color: var(--one-button-background-color, #63ed7a);
+    color: var(--one-button-color, #63ed7a);
   }
 
   .one-btn[dashed] {
     border-style: dashed;
-    background-color: var(--one-button-color, #fff);
+    background-color: var(--one-button-background-color, #fff);
+  }
+
+  .one-btn[color][type] {
+    color: var(--one-button-color, #63ed7a);
   }
 </style>
