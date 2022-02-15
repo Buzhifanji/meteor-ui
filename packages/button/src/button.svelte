@@ -9,6 +9,7 @@
   export let disabled: boolean | null = false; // 是否禁用
   export let loading: string | null = null; // 是否loading
   export let dashed: string | null = null; // 是否设置虚线
+  export let circle: string | null = null; // 圆角
 
   let style = '';
 
@@ -48,6 +49,7 @@
   {color}
   {dashed}
   {style}
+  {circle}
 >
   <slot />
 </button>
@@ -179,5 +181,9 @@
 
   .one-btn[color][type] {
     color: var(--one-button-color, #63ed7a);
+  }
+
+  .one-btn[circle] {
+    border-radius: 3em;
   }
 </style>
