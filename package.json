@@ -4,7 +4,6 @@
   "scripts": {
     "start": "pnpm run start --filter '*'",
     "reinstall": "pnpm clean && pnpm install",
-    "vite": "vite",
     "dumi": "dumi dev",
     "build:dumi": "dumi build",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
@@ -12,7 +11,6 @@
     "lib": "vite build --config scripts/vite.lib.config.js",
     "lib:watch": "vite build --config scripts/vite.lib.config.js --watch",
     "build": "vite build",
-    "serve": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "clean": "rm -rf node_modules **/*/node_modules",
     "test": "jest",
