@@ -17,7 +17,7 @@ export function updateStyleAttribute(property: string, value: string | null) {
   }
 }
 
-export function getKey(value: string) {
+export function getCssVarKey(value: string) {
   const result = value.split(':')[0];
   return result ? result.trim() : '';
 }
