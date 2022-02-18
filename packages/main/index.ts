@@ -1,1 +1,1 @@
-export * from '@one-ui/one-button';
+import '@one-ui/one-button';

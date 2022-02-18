@@ -61,7 +61,7 @@ import '@one-ui/button'
 
 export default () => <div>
     <one-button attr-type="submit"  style={{marginRight: '10px'}}>点不到</one-button>
-    <one-button attrType="submit" type="primary" ghost style={{marginRight: '10px'}}>点不到</one-button>
+    <one-button attrType="submit" color="red" ghost style={{marginRight: '10px'}}>点不到</one-button>
     <one-button type="info" ghost style={{marginRight: '10px'}}>点不到</one-button>
     <one-button type="warning" ghost style={{marginRight: '10px'}}>点不到</one-button>
     <one-button type="success" ghost style={{marginRight: '10px'}}>点不到</one-button>
