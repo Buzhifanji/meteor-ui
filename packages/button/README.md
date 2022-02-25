@@ -1,3 +1,1 @@
-# button
-
-## Usage
+# @one-ui/one-button

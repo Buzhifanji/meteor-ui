@@ -17,13 +17,19 @@
   <section>
     <h1>type</h1>
     <one-button>default</one-button>
-    <one-button type="primary">primary</one-button>
+    <one-button id="dd" type="primary" disabled>primary</one-button>
     <one-button type="info">info</one-button>
     <one-button type="warning">warning</one-button>
     <one-button type="success">success</one-button>
     <one-button type="danger">danger</one-button>
   </section>
   <script type="module" src="../../../out-lib/button.js"></script>
+  <script>
+    document.querySelector('#dd').addEventListener('click', () => {
+      console.log('dddddddddddd')
+    })
+
+  </script>
 </body>
 
 </html>

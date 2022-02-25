@@ -62,9 +62,8 @@
   }
 </script>
 
-<div>
-  <slot />
-</div>
+<button {disabled} />
+<slot />
 
 <style>
   :host {
@@ -80,7 +79,11 @@
       sans-serif
     );
     display: inline-flex;
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
     user-select: none;
     padding: 0.6em 1em;
     width: var(--one-width, initial);
@@ -97,6 +100,19 @@
       opacity 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
       border-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1));
   }
+  button {
+    background: none;
+    outline: 0;
+    border: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    user-select: none;
+    cursor: unset;
+  }
   slot {
     display: contents;
   }
@@ -104,8 +120,14 @@
   :host([disabled]),
   :host([loading]) {
     pointer-events: none;
-    /* cursor: not-allowed; */
+    cursor: default;
     opacity: 0.6;
+  }
+  :host([disabled]) button,
+  :host([loading]) button {
+    /* pointer-events: all; */
+    cursor: not-allowed;
+    /* pointer-events: auto; */
   }
   /* :host([disabled]) span,
   :host([loading]) span {

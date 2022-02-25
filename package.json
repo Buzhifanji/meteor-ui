@@ -4,6 +4,7 @@
   "scripts": {
     "start": "pnpm run start --filter '*'",
     "reinstall": "pnpm clean && pnpm install",
+    "plop": "plop",
     "dumi": "dumi dev",
     "build:dumi": "dumi build",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
@@ -40,6 +41,7 @@
     "dumi": "^1.1.38",
     "jest": "^27.5.0",
     "lint-staged": "^10.0.7",
+    "plop": "^3.0.5",
     "prettier": "^2.2.1",
     "react": "^16.14.0",
     "react-dom": "^16.9.0",
