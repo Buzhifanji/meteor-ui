@@ -1,3 +1,3 @@
-export interface CssVarItem {
+export interface StringObject {
   [key: string]: string;
 }
