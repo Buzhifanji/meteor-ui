@@ -1,8 +1,12 @@
-<svelte:options tag={null} />
+<svelte:options />
 
 <script lang="ts">
-  import { roleButton } from '@one-ui/one-aria';
-  import { onMount, tick } from 'svelte';
+  import { ariaDisabled, roleButton } from '@one-ui/one-aria';
+  import {
+    beforeUpdate,
+    get_current_component,
+    onMount,
+  } from 'svelte/internal';
   import { ButtonSize, ButtonType } from './interface';
 
   export let color: string | null = null; // 自定义颜色
@@ -13,17 +17,26 @@
   export let loading: string | null = null; // 是否loading
   export let dashed: string | null = null; // 是否设置虚线
   export let circle: string | null = null; // 圆角
+  export let attrType: string = 'button';
 
-  onMount(async () => {
-    console.log('color', color); // "some default value"
-    await tick();
-    console.log('color', color); // "Foo"
+  const root = get_current_component();
+
+  onMount(() => {
+    root.setAttribute('role', roleButton);
+    setAriaDisabled();
   });
-
-  let style = '';
-
+  beforeUpdate(() => {
+    if (root.hasAttribute(ariaDisabled)) {
+      setAriaDisabled();
+    }
+  });
+  function setAriaDisabled() {
+    const disable = $$props.disabled ? true : false;
+    root.setAttribute(ariaDisabled, disable);
+  }
   function setColor({ color, ghost }: SvelteAllProps) {
     if (color) {
+      let style = '';
       if (ghost !== undefined) {
         style = `
         --one-button-border-color: ${color};
@@ -40,6 +53,7 @@
         --one-button-background-color: ${color}; 
         `;
       }
+      root.setAttribute('style', style);
     }
   }
 
@@ -48,9 +62,9 @@
   }
 </script>
 
-<span class="one-btn" role={roleButton}>
+<div>
   <slot />
-</span>
+</div>
 
 <style>
   :host {
@@ -65,9 +79,7 @@
       Arial,
       sans-serif
     );
-
-    contain: layout style;
-    display: inline-block;
+    display: inline-flex;
     cursor: pointer;
     user-select: none;
     padding: 0.6em 1em;
@@ -88,35 +100,17 @@
   slot {
     display: contents;
   }
-  /* :host {
-    display: inline-block;
-    width: inherit;
-    height: inherit;
-    cursor: pointer;
-    user-select: none;
-    line-height: 1;
-    overflow: hidden;
-    border: 1px solid var(--one-button-border-color, #d9d9d9);
-    font-size: var(--one-font-size, 14px);
-    box-shadow: var(--one-button-box-shadow, 0 2px 6px rgba(0, 0, 0, 0.06));
-    color: var(--one-button-color, #2c3136);
-    background-color: var(--one-button-background-color, #fff);
-    border-color: var(--one-button-border-color, #d9d9d9);
-    border-radius: var(--one-border-radius, 00.25em);
-    transition: color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
-      background-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
-      opacity 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1)),
-      border-color 0.3s var(--one-bezier, cubic-bezier(0.4, 0, 0.2, 1));
-  } */
 
   :host([disabled]),
-  :host([loading]),
-  :host[disabled],
-  :host[loading] {
+  :host([loading]) {
     pointer-events: none;
-    cursor: not-allowed;
+    /* cursor: not-allowed; */
     opacity: 0.6;
   }
+  /* :host([disabled]) span,
+  :host([loading]) span {
+    cursor: not-allowed;
+  } */
   :host(:not([disabled]):active),
   :host(:not([disabled]):hover) {
     transform: translateY(0.06em);
