@@ -2,6 +2,7 @@
 
 <script lang="ts">
   import { ariaDisabled, roleButton } from '@one-ui/one-aria';
+  import { updateAttribute } from '@one-ui/one-utils';
   import {
     beforeUpdate,
     get_current_component,
@@ -35,26 +36,23 @@
     root.setAttribute(ariaDisabled, disable);
   }
   function setColor({ color, ghost }: SvelteAllProps) {
-    if (color) {
-      let style = '';
-      if (ghost !== undefined) {
-        style = `
-        --one-button-border-color: ${color};
-        --one-button-color: ${color}; 
-        --one-button-color-pressed: ${color};
-        --one-button-border-color-pressed: ${color}; 
-        `;
-      } else {
-        style = `
-        --one-button-border-color: ${color}; 
-        --one-button-color-pressed: #fff; 
-        --one-button-border-color-pressed: ${color}; 
-        --one-button-color: #fff;
-        --one-button-background-color: ${color}; 
-        `;
-      }
-      root.setAttribute('style', style);
+    let style = {};
+    if (ghost !== undefined) {
+      style = {
+        '--one-button-border-color': color,
+        '--one-button-color': color,
+        '--one-button-color-pressed': color,
+        '--one-button-border-color-pressed': color,
+      };
+    } else {
+      style = {
+        '--one-button-border-color': color,
+        '--one-button-color': color,
+        '--one-button-color-pressed': color,
+        '--one-button-border-color-pressed': color,
+      };
     }
+    updateAttribute(style, color);
   }
 
   $: {
