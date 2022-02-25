@@ -7,7 +7,7 @@
     get_current_component,
     onMount,
   } from 'svelte/internal';
-  import {  } from './interface';
+  import {  } from './{{name}}.interface';
 </script>
 
 <slot />
@@ -25,5 +25,9 @@
       Arial,
       sans-serif
     );
+    font-size: var(--one-font-size, 14px);
+  }
+  slot {
+    display: contents;
   }
 </style>
