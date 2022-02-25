@@ -1,0 +1,34 @@
+{
+  "name": "@one-ui/one-space",
+  "version": "1.0.0",
+  "description": "@one-ui/one-space",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "one-ui"
+  ],
+  "author": "buzhifanji",
+  "license": "MIT",
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.35",
+    "svelte": "^3.46.2",
+    "svelte-check": "^2.3.0",
+    "svelte-jester": "^2.3.1",
+    "svelte-loader": "^3.1.2",
+    "svelte-preprocess": "^4.10.2",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@one-ui/one-aria": "workspace:^0.0.1",
+    "@one-ui/one-utils": "workspace:^0.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Buzhifanji/one-ui.git",
+    "directory": "packages/space"
+  },
+  "bugs": {
+    "url": "https://github.com/Buzhifanji/one-ui/issues"
+  },
+  "homepage": "https://github.com/Buzhifanji/one-ui/blob/master/packages/space/README.md"
+}
