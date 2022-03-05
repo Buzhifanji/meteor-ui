@@ -13,13 +13,19 @@ import {
   borderRadius,
   bezier,
   setCssVar,
+  btnColorName,
+  btnBoxShaodowName,
+  btnBgColorName,
+  btnBorderColorName,
+  btnPressedColorName,
+  btnPressedBorderColorName,
 } from "../../../common/css-variable";
 import { ButtonAttrType, ButtonSize, ButtonType } from "./interface";
 
-const setBtnColor = setCssVar("--one-button-color"); // 设置按钮颜色
-const setBtnBoxShadow = setCssVar("--one-button-box-shadow"); // boxshadow
-const setBtnBg = setCssVar("--one-button-background-color"); // 背景色
-const setBtnBorder = setCssVar("--one-button-border-color"); // 边框色
+const setBtnColor = setCssVar(btnColorName); // 设置按钮颜色
+const setBtnBoxShadow = setCssVar(btnBoxShaodowName); // boxshadow
+const setBtnBg = setCssVar(btnBgColorName); // 背景色
+const setBtnBorder = setCssVar(btnBorderColorName); // 边框色
 
 export interface MeButton {
   type: ButtonType; // 类型
@@ -62,15 +68,15 @@ export class MeButton extends MinzeElement {
     };
     if (this.ghost) {
       // 透明色
-      setProperty("--one-button-border-color");
-      setProperty("--one-button-color");
-      setProperty("--one-button-color-pressed");
-      setProperty("--one-button-border-color-pressed");
+      setProperty(btnBorderColorName);
+      setProperty(btnColorName);
+      setProperty(btnPressedColorName);
+      setProperty(btnPressedBorderColorName);
     } else {
-      setProperty("--one-button-border-color");
-      setProperty("--one-button-color");
-      setProperty("--one-button-color-pressed");
-      setProperty("--one-button-border-color-pressed");
+      setProperty(btnBorderColorName);
+      setProperty(btnColorName);
+      setProperty(btnPressedColorName);
+      setProperty(btnPressedBorderColorName);
     }
   }
   setDisabled() {
