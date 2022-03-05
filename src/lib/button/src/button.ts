@@ -2,23 +2,23 @@ import { Attrs, MinzeElement } from "minze";
 import { ariaDisabled } from "../../../common/aria/aria-statue";
 import { roleButton } from "../../../common/aria/role-value";
 import {
-  fontFamily,
-  height,
-  width,
+  bezier,
+  borderRadius,
+  btnBgColor,
+  btnBgColorName,
   btnBorderColor,
-  fontSize,
+  btnBorderColorName,
+  btnBoxShaodowName,
   btnBoxShaodw,
   btnColor,
-  btnBgColor,
-  borderRadius,
-  bezier,
-  setCssVar,
   btnColorName,
-  btnBoxShaodowName,
-  btnBgColorName,
-  btnBorderColorName,
-  btnPressedColorName,
   btnPressedBorderColorName,
+  btnPressedColorName,
+  fontFamily,
+  fontSize,
+  height,
+  setCssVar,
+  width,
 } from "../../../common/css-variable";
 import { ButtonAttrType, ButtonSize, ButtonType } from "./interface";
 
