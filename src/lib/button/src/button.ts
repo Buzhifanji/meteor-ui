@@ -56,17 +56,21 @@ export class MeButton extends MinzeElement {
 
   // 自定义颜色
   dryColor(value: string) {
+    const setProperty = (name: string, color?: string) => {
+      const result = color ? color : value;
+      this.style.setProperty(name, result);
+    };
     if (this.ghost) {
       // 透明色
-      this.style.setProperty("--one-button-border-color", value);
-      this.style.setProperty("--one-button-color", value);
-      this.style.setProperty("--one-button-color-pressed", value);
-      this.style.setProperty("--one-button-border-color-pressed", value);
+      setProperty("--one-button-border-color");
+      setProperty("--one-button-color");
+      setProperty("--one-button-color-pressed");
+      setProperty("--one-button-border-color-pressed");
     } else {
-      this.style.setProperty("--one-button-border-color", value);
-      this.style.setProperty("--one-button-color", value);
-      this.style.setProperty("--one-button-color-pressed", value);
-      this.style.setProperty("--one-button-border-color-pressed", value);
+      setProperty("--one-button-border-color");
+      setProperty("--one-button-color");
+      setProperty("--one-button-color-pressed");
+      setProperty("--one-button-border-color-pressed");
     }
   }
   setDisabled() {
