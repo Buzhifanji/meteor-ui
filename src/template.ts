@@ -24,4 +24,18 @@ export default /* html */ `
     <me-button disabled color="red">default</me-button>
     <me-button circle >default</me-button>
   </div>
+  <div>
+      <me-text color="primary">
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+      </me-text>
+      <me-text color="primary" row="3">
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+      </me-text>
+    </div>
 `;
