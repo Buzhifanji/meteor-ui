@@ -19,4 +19,9 @@ export default /* html */ `
     <me-button color="red">default</me-button>
     <me-button color="red" type="primary">default</me-button>
   </div>
+  <p />
+  <div>
+    <me-button disabled color="red">default</me-button>
+    <me-button circle >default</me-button>
+  </div>
 `;

@@ -1,4 +1,6 @@
 import { Attrs, MinzeElement } from "minze";
+import { ariaDisabled } from "../../../common/aria/aria-statue";
+import { roleButton } from "../../../common/aria/role-value";
 import {
   fontFamily,
   height,
@@ -12,7 +14,7 @@ import {
   bezier,
   setCssVar,
 } from "../../../common/css-variable";
-import { ButtonType } from "./interface";
+import { ButtonAttrType, ButtonSize, ButtonType } from "./interface";
 
 const setBtnColor = setCssVar("--one-button-color"); // 设置按钮颜色
 const setBtnBoxShadow = setCssVar("--one-button-box-shadow"); // boxshadow
@@ -20,17 +22,37 @@ const setBtnBg = setCssVar("--one-button-background-color"); // 背景色
 const setBtnBorder = setCssVar("--one-button-border-color"); // 边框色
 
 export interface MeButton {
-  type: ButtonType;
-  color: string | null;
-  ghost: boolean;
+  type: ButtonType; // 类型
+  attrType: ButtonAttrType;
+  size: ButtonSize; // 尺寸大小
+  color: string | null; // 自定义颜色
+  ghost: boolean; // 是否透明背景
+  disabled: boolean; // 是否禁用
+  loading: boolean; // 是否禁用
+  circle: boolean; // 是否圆角
 }
 
 export class MeButton extends MinzeElement {
   btnColor = setBtnColor("#63ed7a");
 
-  attrs: Attrs = ["type", "color", "ghost"];
+  attrs: Attrs = [
+    "type",
+    ["attr-type", "button"],
+    ["size", "medium"],
+    "color",
+    "ghost",
+    "disabled",
+    "loading",
+  ];
 
-  static observedAttributes = ["type", "color", "ghost"];
+  static observedAttributes = [
+    "type",
+    "attrType",
+    "size",
+    "color",
+    "disabled",
+    "loading",
+  ];
 
   // 自定义颜色
   dryColor(value: string) {
@@ -47,7 +69,14 @@ export class MeButton extends MinzeElement {
       this.style.setProperty("--one-button-border-color-pressed", value);
     }
   }
-
+  setDisabled() {
+    const result = this.disable ? "true" : "false";
+    this.setAttribute(ariaDisabled, result);
+  }
+  onReady() {
+    this.setAttribute("role", roleButton);
+    this.setDisabled();
+  }
   onAttributeChange(
     name?: string,
     oldValue?: string | null,
@@ -61,6 +90,9 @@ export class MeButton extends MinzeElement {
       case "color":
         this.btnColor = setBtnColor(newValue!);
         this.dryColor(newValue!);
+        break;
+      case "disabled":
+        this.setDisabled();
         break;
     }
   }
