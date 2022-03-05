@@ -1,30 +1,14 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "types": ["jest"],
+    "target": "ES6",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "importHelpers": true,
-    "jsx": "react",
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "baseUrl": "./",
+    "allowJs": false,
     "strict": true,
-    "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
-    },
-    "allowSyntheticDefaultImports": true
+    "noImplicitAny": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "outDir": "./dist"
   },
-  "exclude": [
-    "node_modules",
-    "lib",
-    "es",
-    "dist",
-    "typings",
-    "**/__test__",
-    "test",
-    "docs",
-    "tests"
-  ]
+  "include": ["./src/**/*.ts", "./types/**/*.ts"]
 }
