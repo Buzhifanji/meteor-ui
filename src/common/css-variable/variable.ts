@@ -1,6 +1,7 @@
 import { setCssVar } from ".";
 import {
   bezierName,
+  bgColorName,
   borderRadiustName,
   btnBgColorName,
   btnBorderColorName,
@@ -20,6 +21,8 @@ export const fontFamily = setCssVar(fontFamilyName)(
 export const fontSize = setCssVar(fontSizeName)("14px");
 
 export const textColor = setCssVar(textColorName)("#2c3136");
+
+export const bgColor = setCssVar(bgColorName)("#fff");
 
 export const width = setCssVar(widthName)("initial");
 

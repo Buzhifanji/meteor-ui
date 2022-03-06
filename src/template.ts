@@ -38,4 +38,42 @@ export default /* html */ `
         textdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
       </me-text>
     </div>
+    <div>
+      <p>头部</p>
+      <me-divider></me-divider>
+      <p>尾部</p>
+    </div>
+    <div>
+      <p>头部</p>
+      <me-divider dashed></me-divider>
+      <p>尾部</p>
+    </div>
+    <div>
+      <p>头部</p>
+      <me-divider placement="center">内容</me-divider>
+      <p>尾部</p>
+    </div>
+    <div>
+      <p>头部</p>
+      <me-divider placement="left">内容</me-divider>
+      <p>尾部</p>
+    </div>
+    <div>
+      <p>头部</p>
+      <me-divider placement="right" dashed>内容</me-divider>
+      <p>尾部</p>
+    </div>
+    <div>
+      <span>sss</span>
+      <me-divider vertical style="height: 60px; background-color: #7cb305"></me-divider>
+      <span>ssss</span>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <div>
+      <span>sss</span>
+      <me-divider vertical dashed></me-divider>
+      <span>ssss</span>
+    </div>
 `;
