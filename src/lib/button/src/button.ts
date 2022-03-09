@@ -95,7 +95,6 @@ export class MeButton extends MinzeElement {
     if (newValue === oldValue) {
       return;
     }
-    console.log(name, newValue);
     switch (name) {
       case "color":
         this.btnColor = setBtnColor(newValue!);

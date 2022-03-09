@@ -76,4 +76,11 @@ export default /* html */ `
       <me-divider vertical dashed></me-divider>
       <span>ssss</span>
     </div>
+    <section>
+        <me-space class="dd">
+          <me-button>default</me-button>
+          <me-button>default</me-button>
+          <me-button>default</me-button>
+        </me-space>
+      </section>
 `;
