@@ -1,4 +1,4 @@
-import { Attrs, MinzeElement } from "minze";
+import { Attrs, EventListeners, MinzeElement } from "minze";
 import { getNumberAndUnit } from "../../../common/style";
 import { Align, Justify, Wrap } from "./interface";
 
@@ -29,27 +29,6 @@ export class MeSpace extends MinzeElement {
     "align",
     "wrap",
   ];
-  slotElements: HTMLSlotElement | null = null; // 插槽
-  onRender() {
-    this.slotElements = this.select("slot");
-    this.slotElements?.addEventListener("slotchange", () => {
-      this.sizeUpdate();
-    });
-  }
-  onAttributeChange(
-    name?: string,
-    oldValue?: string | null,
-    newValue?: string | null
-  ) {
-    if (newValue === oldValue) {
-      return;
-    }
-    switch (name) {
-      case "size":
-        this.sizeUpdate();
-        break;
-    }
-  }
 
   html = () => /* html */ `
     <slot></slot>
@@ -68,9 +47,26 @@ export class MeSpace extends MinzeElement {
       display: contents;
     } */
   `;
-  private sizeUpdate() {
-    if (this.slotElements) {
-      const children = this.slotElements.assignedElements();
+
+  onAttributeChange(
+    name?: string,
+    oldValue?: string | null,
+    newValue?: string | null
+  ) {
+    if (newValue === oldValue) {
+      return;
+    }
+    switch (name) {
+      case "size":
+        this.sizeUpdate();
+        break;
+    }
+  }
+  sizeUpdate = () => {
+    const slot = this.select("slot") as HTMLSlotElement;
+    console.log("slot", slot);
+    if (slot) {
+      const children = slot.assignedElements();
       children.forEach((element, index) => {
         if (index !== children.length - 1) {
           const value = getNumberAndUnit(this.size as string);
@@ -84,5 +80,7 @@ export class MeSpace extends MinzeElement {
         }
       });
     }
-  }
+  };
+
+  eventListeners: EventListeners = [["slot", "slotchange", this.sizeUpdate]];
 }
