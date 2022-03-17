@@ -76,7 +76,11 @@ export class MeCollapsePanel extends Attribute {
     this.contentElement = this.select(`.${contentClassName}`);
   };
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  private attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    newValue: string
+  ) {
     if (oldValue === newValue) {
       return;
     }

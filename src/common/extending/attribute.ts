@@ -12,7 +12,8 @@ export class Attribute extends MinzeElement {
     let result = false;
     if (this.hasAttribute(attributeName)) {
       const attr = this.getAttribute(attributeName) as unknown;
-      console.log("attr", attr === "");
+      // url: https://minze.dev/guide/components-data.html#attribute-properties-attributes
+      // With the exception of undefined, null, false or true, all attribute properties will always be from type string, no matter the provided value type.
       if (attr === "" || attr === true || attr === "true") {
         result = true;
       }
@@ -29,5 +30,4 @@ export class Attribute extends MinzeElement {
       ? this.setAttribute(name, "true")
       : this.removeAttribute(name);
   }
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {}
 }
