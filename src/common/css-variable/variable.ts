@@ -7,6 +7,7 @@ import {
   btnBorderColorName,
   btnBoxShaodowName,
   btnColorName,
+  dividerColorName,
   fontFamilyName,
   fontSizeName,
   heightName,
@@ -23,6 +24,8 @@ export const fontSize = setCssVar(fontSizeName)("14px");
 export const textColor = setCssVar(textColorName)("#2c3136");
 
 export const bgColor = setCssVar(bgColorName)("#fff");
+
+export const dividerColor = setCssVar(dividerColorName)("#efeff5");
 
 export const width = setCssVar(widthName)("initial");
 

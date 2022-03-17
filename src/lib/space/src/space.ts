@@ -62,9 +62,8 @@ export class MeSpace extends MinzeElement {
         break;
     }
   }
-  sizeUpdate = () => {
+  private sizeUpdate = () => {
     const slot = this.select("slot") as HTMLSlotElement;
-    console.log("slot", slot);
     if (slot) {
       const children = slot.assignedElements();
       children.forEach((element, index) => {

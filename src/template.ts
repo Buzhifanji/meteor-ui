@@ -83,4 +83,30 @@ export default /* html */ `
           <me-button>default</me-button>
         </me-space>
       </section>
+      <section>
+    <h1>collapse-1</h1>
+    <me-collapse >
+      <me-collapse-panel name="1" slot="panel" expanded="true">
+        <div slot="title">title</div>
+        <div>ddddddddddddddd</div>
+        <div>ddddddddddddddd</div>
+        <div>ddddddddddddddd</div>
+        <div>ddddddddddddddd</div>
+        <div>ddddddddddddddd</div>
+        <div>ddddddddddddddd</div>
+      </me-collapse-panel>
+      <me-collapse-panel name="2" slot="panel" expanded>
+        <div slot="title">2</div>
+        2222222222222
+      </me-collapse-panel>
+      <me-collapse-panel name="3" slot="panel" disabled>
+        <div slot="title">3</div>
+        3333333333333
+      </me-collapse-panel>
+      <me-collapse-panel name="4" slot="panel">
+        <div slot="title">title</div>
+        <div>title</div>
+      </me-collapse-panel>
+    </me-collapse>
+  </section>
 `;

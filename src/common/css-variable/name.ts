@@ -8,6 +8,8 @@ export const textColorName = "--meteor-text-color";
 export const dashedColorName = "--meteor-dashed-color";
 /** 背景颜色 */
 export const bgColorName = "--meteor-background-color";
+/** 分割线颜色 */
+export const dividerColorName = "--meteor-divider-color";
 /** 宽度 */
 export const widthName = "--meteor-width";
 /** 高度 */

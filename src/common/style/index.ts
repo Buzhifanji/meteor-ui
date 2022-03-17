@@ -1,3 +1,4 @@
+export * from "./animation";
 /**
  * 支持 40 40px 40em 40rem; 默认 px
  * @param value

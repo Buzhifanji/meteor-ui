@@ -4,7 +4,7 @@ specifiers:
   '@microsoft/api-extractor': ^7.19.4
   '@rollup/plugin-node-resolve': ^13.1.3
   '@rollup/plugin-typescript': ^8.3.0
-  minze: ^1.0.2
+  minze: ^1.0.3
   rimraf: ^3.0.2
   rollup: ^2.66.1
   rollup-plugin-license: ^2.6.1
